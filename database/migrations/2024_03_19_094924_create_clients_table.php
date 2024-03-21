@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('payment_account');
             $table->string('correspondent_account'); // корсчет
             
-            $table->foreignId('bank_id')->constrained('banks');
+            $table->foreignId('bank_id')->constrained('banks','id');
             $table->timestamps();
         });
     }
