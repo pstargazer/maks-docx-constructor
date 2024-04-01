@@ -4,20 +4,26 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 use App\Models\Client;
-use Ramsey\Uuid\Type\Integer;
+use App\Models\Bank;
+use App\Models\Template;
+use App\Models\Level;
+use App\Models\Ground;
+
+// use Ramsey\Uuid\Type\Integer;
 
 class ImportSeeder extends Seeder
 {
     /**
      * Import the clients from /database/csv/n/clients.csv
      */
-    public function importUsers(){
+    private function importClients($id){
         Client::truncate();// delete all models 
-        $csvData = fopen(base_path('database/csv/1/clients.csv'), 'r');
+        $csvData = fopen(base_path("database/csv/{$id}/clients.csv"), 'r');
         $data = fgetcsv($csvData,  null, ',');
         while ($data !== false) {
-            print_r($data);
+            // print_r($data);
             Client::create([
                 'name_prefix' => $data[0],
                 'company_name' => $data[1],
@@ -40,13 +46,41 @@ class ImportSeeder extends Seeder
         fclose($csvData);
     }
 
-    public function import(){
-
+    private function importBanks($id){
+        Bank::truncate();// delete all models 
+        $csvData = fopen(base_path("database/csv/{$id}/banks.csv"), 'r');
+        $data = fgetcsv($csvData,  null, ',');
+        while ($data !== false) {
+            print_r($data);
+            Bank::create([
+                'name' => $data[0],
+            ]);
+            $data = fgetcsv($csvData,  null, ',');
+        }
+        fclose($csvData);
     }
 
+    private function importTemplates($id){
+        Template::truncate();// delete all models
+        $csvData = fopen(base_path("database/csv/{$id}/templates.csv"), 'r');
+        $data = fgetcsv($csvData,  null, ',');
+        while ($data !== false) {
+            print_r($data);
+            Bank::create([
+                'name' => $data[0],
+            ]);
+            $data = fgetcsv($csvData,  null, ',');
+        }
+        fclose($csvData);
+    }
+
+
+    // REFACTOR ME: make one universal function 
     public function run(): void
     {
-        $this->importUsers();
+        $datasetVerion = '1';
+        $this->importBanks($datasetVerion);
+        $this->importClients($datasetVerion);
         printf('Данные успешно импортированы');
     }
 }

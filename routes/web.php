@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Contract;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/contract/');
 });
+
+
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'contract',
+    'namespace' => 'App\Http\Controllers\Contract',
+
+], function () {
+
+    // Route::middleware(['auth'])->group(function () {
+    Route::get('/', 'IndexController')->name('index');
+
+});
+
+
+

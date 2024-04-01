@@ -3,11 +3,26 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "_moduleAliases": {
+        "@modules": "/node_modules/",
+        "@bs": "/node_modules/bootstrap"
     },
     "devDependencies": {
+        "@popperjs/core": "^2.11.6",
         "axios": "^1.6.4",
+        "bootstrap": "^5.2.3",
         "laravel-vite-plugin": "^1.0.0",
+        "sass": "^1.56.1",
         "vite": "^5.0.0"
+    },
+    "dependencies": {
+        "bootstrap": "^5.3.3",
+        "bootstrap-icons": "^1.11.3",
+        "module-alias": "^2.2.3",
+        "sass": "^1.72.0",
+        "sass-loader": "^14.1.1"
     }
 }
