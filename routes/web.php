@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Redirect;
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return Redirect::to('/contracts');
+});
 Route::get('/home', function () {
     return Redirect::to('/contracts');
 });
