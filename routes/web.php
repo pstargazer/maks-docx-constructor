@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Contract;
+use Illuminate\Support\Facades\Redirect;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,23 +18,42 @@ use App\Http\Controllers\Contract;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', function () {
-    return redirect('/contract/');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', function () {
+    return Redirect::to('/contracts');
 });
 
+Route::middleware('auth')->group(function(){
+    // contracts crud
+    Route::group([
+        'prefix' => 'contracts',
+        'namespace' => 'App\Http\Controllers\Contract',
+        'as' => 'contract.'
+    ], function () {
+    
+        // Route::middleware(['auth'])->group(function () {
+        Route::get('/', 'IndexController')->name('index');
+    
+    });
 
-Route::group([
-    'middleware' => 'auth',
-    'prefix' => 'contract',
-    'namespace' => 'App\Http\Controllers\Contract',
-
-], function () {
-
-    // Route::middleware(['auth'])->group(function () {
-    Route::get('/', 'IndexController')->name('index');
+    // clients crud
+    Route::group([
+        'prefix' => 'clients',
+        'as' => 'client.',
+        "namespace" => 'App\Http\Controllers'
+    ], function () {
+        Route::controller('ClientController')->group(function (){
+            // Route::get('/','index')->name('client.index');
+            // Route::view('/', 'client.index');
+            Route::get('/', 'index');
+            Route::view('/add', 'client.create');
+            Route::post('/add', 'store');
+            // Route::get('/add','index')->name('client.create');
+        });
+    });
 
 });
+
 
 
 

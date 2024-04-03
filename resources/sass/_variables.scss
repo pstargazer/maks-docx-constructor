@@ -1,8 +1,22 @@
 // Body
-// $body-bg: $white;
 $body-bg: white;
-$primary-bg: $green;
 $primary: $green;
+
+// ovverride bootstrap colors
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary, // gray
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark,
+  "link-color": $red
+);
+
+
+$link-color: $primary;
 
 // Typography
 $font-family-sans-serif: 'Inter', sans-serif;

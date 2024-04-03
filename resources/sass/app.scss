@@ -2,18 +2,16 @@
 
 // 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
 @import "@modules/bootstrap/scss/functions";
-
-// 2. Include any default variable overrides here
-
-
-// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
 @import "@modules/bootstrap/scss/variables";
 @import "@modules/bootstrap/scss/variables-dark";
 
-
-// Bootstrap
 @import 'variables';
 
+// Bootstrap
 @import '@bootstrap/scss/bootstrap';
+
 // @import "/node_modules/bootstrap/scss/variables-dark";
 
+.container-my {
+    @include make-container();
+}
