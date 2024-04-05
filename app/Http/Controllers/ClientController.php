@@ -33,16 +33,16 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = Client::all()->toArray();        
+        $clients = Client::all()->toArray();
         foreach ($clients as $idx=>$client){
             // dump($client);
             $newValues = [
                 'name_prefix_short' => $this->shortname($clients[$idx]['name_prefix'])
             ];
             $clients[$idx] = array_merge($clients[$idx], $newValues);
-            
+
         }
-        // dd($clients);
+        dd($clients);
         return view('client.index', compact('clients'));
     }
 

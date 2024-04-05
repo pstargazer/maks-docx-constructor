@@ -23,6 +23,7 @@ Route::get('/', function () {
     return Redirect::to('/contracts');
 });
 Route::get('/home', function () {
+
     return Redirect::to('/contracts');
 });
 
@@ -33,10 +34,10 @@ Route::middleware('auth')->group(function(){
         'namespace' => 'App\Http\Controllers\Contract',
         'as' => 'contract.'
     ], function () {
-    
+
         // Route::middleware(['auth'])->group(function () {
         Route::get('/', 'IndexController')->name('index');
-    
+
     });
 
     // clients crud
@@ -59,4 +60,6 @@ Route::middleware('auth')->group(function(){
 
 
 
-
+Route::get('/others', function () {
+    return view("others.others");
+});

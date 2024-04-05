@@ -12,14 +12,14 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($clients as $client)        
+    @foreach ($clients as $client)
         <tr>
             <th scope="row">
                 <input type="checkbox" name="" id="">
             </th>
             <td>{{$client->name_prefix_short}} {{$client->company_name}}</td>
             <td>Otto</td>
-            <td>@mdo</td>
+            <td>mdo</td>
         </tr>
     @endforeach
 
