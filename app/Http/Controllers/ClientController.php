@@ -42,7 +42,7 @@ class ClientController extends Controller
             $clients[$idx] = array_merge($clients[$idx], $newValues);
 
         }
-        dd($clients);
+        // dd($clients);
         return view('client.index', compact('clients'));
     }
 
