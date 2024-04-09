@@ -21,7 +21,7 @@
         </form>
 
 
-        <table class="table table-hover text-nowrap">
+        <table class="table table-hover text-nowrap border">
             <thead>
             <tr>
                 <th>
@@ -35,130 +35,26 @@
             </tr>
             </thead>
             <tbody>
-                <tr class="">
+            @foreach ($clients as $client)  
+                <tr>
                     <td>
-                        <input type="checkbox" class="btn-check" id="btncheck1">
-                        <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
+                        <input type="checkbox" class="btn-check" id="btncheck{{$client['id']}}">
+                        <label class="btn btn-outline-primary  pt-3" for="btncheck{{$client['id']}}"></label>
                     </td>
-                    <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                    <td class="pt-2">Якимова О.Ф.</td>
-                    <td class="pt-2">63-14-22</td>
+                    <td class="pt-2">{{$client->name_prefix_short}} {{$client->company_name}}</td>
+                    <td class="pt-2">{{$client->delegate_surname}} {{$client->initials}}</td>
+                    <td class="pt-2">{{$client->phone}}</td>
                     <td class="pt-0 mt-0">
                         <x-table.two-buttons/>
                     </td>
                 </tr>
-                <tr class="">
-                    <td>
-                        <input type="checkbox" class="btn-check" id="btncheck1">
-                        <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                    </td>
-                    <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                    <td class="pt-2">Якимова О.Ф.</td>
-                    <td class="pt-2">63-14-22</td>
-                    <td class="pt-0 mt-0">
-                        <x-table.two-buttons/>
-                    </td>
-                </tr>
-                <tr class="">
-                    <td>
-                        <input type="checkbox" class="btn-check" id="btncheck1">
-                        <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                    </td>
-                    <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                    <td class="pt-2">Якимова О.Ф.</td>
-                    <td class="pt-2">63-14-22</td>
-                    <td class="pt-0 mt-0">
-                        <x-table.two-buttons/>
-                    </td>
-                </tr>
-                <tr class="">
-                    <td>
-                        <input type="checkbox" class="btn-check" id="btncheck1">
-                        <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                    </td>
-                    <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                    <td class="pt-2">Якимова О.Ф.</td>
-                    <td class="pt-2">63-14-22</td>
-                    <td class="pt-0 mt-0">
-                        <x-table.two-buttons/>
-                    </td>
-                </tr>
-                <tr class="">
-                    <td>
-                        <input type="checkbox" class="btn-check" id="btncheck1">
-                        <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                    </td>
-                    <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                    <td class="pt-2">Якимова О.Ф.</td>
-                    <td class="pt-2">63-14-22</td>
-                    <td class="pt-0 mt-0">
-                        <x-table.two-buttons/>
-                    </td>
-                </tr>
-                <tr class="">
-                    <td>
-                        <input type="checkbox" class="btn-check" id="btncheck1">
-                        <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                    </td>
-                    <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                    <td class="pt-2">Якимова О.Ф.</td>
-                    <td class="pt-2">63-14-22</td>
-                    <td class="pt-0 mt-0">
-                        <x-table.two-buttons/>
-                    </td>
-                </tr>
-                <tr class="">
-                    <td>
-                        <input type="checkbox" class="btn-check" id="btncheck1">
-                        <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                    </td>
-                    <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                    <td class="pt-2">Якимова О.Ф.</td>
-                    <td class="pt-2">63-14-22</td>
-                    <td class="pt-0 mt-0">
-                        <x-table.two-buttons/>
-                    </td>
-                </tr>
-                <tr class="">
-                    <td>
-                        <input type="checkbox" class="btn-check" id="btncheck1">
-                        <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                    </td>
-                    <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                    <td class="pt-2">Якимова О.Ф.</td>
-                    <td class="pt-2">63-14-22</td>
-                    <td class="pt-0 mt-0">
-                        <x-table.two-buttons/>
-                    </td>
-                </tr>
-                <tr class="">
-                    <td>
-                        <input type="checkbox" class="btn-check" id="btncheck1">
-                        <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                    </td>
-                    <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                    <td class="pt-2">Якимова О.Ф.</td>
-                    <td class="pt-2">63-14-22</td>
-                    <td class="pt-0 mt-0">
-                        <x-table.two-buttons/>
-                    </td>
-                </tr>
-                <tr class="">
-                    <td>
-                        <input type="checkbox" class="btn-check" id="btncheck1">
-                        <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                    </td>
-                    <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                    <td class="pt-2">Якимова О.Ф.</td>
-                    <td class="pt-2">63-14-22</td>
-                    <td class="pt-0 mt-0">
-                        <x-table.two-buttons/>
-                    </td>
-                </tr>
+            @endforeach
             </tbody>
+            <tfoot>
+                {{ $clients->links('pagination::bootstrap-5') }}
+            </tfoot>
         </table>
     </div>
-    <x-client-card/>
-    {{-- {{ $clients->links() }}  //pagination --}}
+    {{-- <x-client-card/> --}}
 </div>
 @endsection

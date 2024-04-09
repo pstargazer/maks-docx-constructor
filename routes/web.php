@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function(){
         Route::controller('ClientController')->group(function (){
             // Route::get('/','index')->name('client.index');
             // Route::view('/', 'client.index');
-            Route::get('/', 'index');
+            Route::get('/', 'index')->name('index');
             Route::view('/add', 'client.create');
             Route::post('/add', 'store');
             // Route::get('/add','index')->name('client.create');
@@ -60,6 +60,10 @@ Route::middleware('auth')->group(function(){
 
 });
 
+Route::view('/import', 'import')->name('import');
+Route::post('/import', function () {
+    Artisan::call('');
+});
 
 
 Route::get('/others', function () {
