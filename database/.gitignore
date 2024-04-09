@@ -2,5 +2,8 @@
 # secure the import data 
 *csv* 
 *.zip
+*.tar.*
+*.7z
+*.rar
 
-csv/
+csv/**
