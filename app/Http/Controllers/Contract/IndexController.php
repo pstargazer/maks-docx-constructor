@@ -22,6 +22,7 @@ class IndexController extends Controller
                 "date" => '29.12.2017'
             ]
         ];
-        return view('contracts.index', compact('contracts'));
+        
+        return view('contract.index', compact('contracts'));
     }
 }

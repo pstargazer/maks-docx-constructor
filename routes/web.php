@@ -19,7 +19,11 @@ use Illuminate\Support\Facades\Redirect;
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return Redirect::to('/contracts');
+});
 Route::get('/home', function () {
+
     return Redirect::to('/contracts');
 });
 
@@ -30,10 +34,12 @@ Route::middleware('auth')->group(function(){
         'namespace' => 'App\Http\Controllers\Contract',
         'as' => 'contract.'
     ], function () {
-    
+
         // Route::middleware(['auth'])->group(function () {
         Route::get('/', 'IndexController')->name('index');
-    
+        Route::view('/add', 'contract.create');
+
+
     });
 
     // clients crud
@@ -56,4 +62,6 @@ Route::middleware('auth')->group(function(){
 
 
 
-
+Route::get('/others', function () {
+    return view("others.others");
+});

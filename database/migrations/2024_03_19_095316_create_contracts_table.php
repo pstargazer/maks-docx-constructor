@@ -21,7 +21,7 @@ return new class extends Migration
             $table->json('content');
             $table->timestamps();
         });
-        // DB::statement('CREATE SEQUENCE contracts_id_seq;');
+        DB::statement('CREATE SEQUENCE contracts_id_seq;');
         // DB::statement('ALTER TABLE contracts ALTER COLUMN id SET SERIAL PRIMARY KEY;'); 
         
         // autoincrement for id

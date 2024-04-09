@@ -13,5 +13,15 @@
 // @import "/node_modules/bootstrap/scss/variables-dark";
 
 .container-my {
-    @include make-container();
+    @include make-container("50px");
+}
+
+//import icons
+// @import url("bootstrap-icons.min.css");
+@import "@modules/bootstrap-icons/font/bootstrap-icons.min.css";
+
+
+// variables
+.table_btn{
+    --bs-icon-link-transform: translate3d(.225rem, -.225rem, 0);
 }
