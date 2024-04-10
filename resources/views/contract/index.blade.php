@@ -38,7 +38,21 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr class="">
+                    @foreach ($contracts as $contract)
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="btn-check" id="btncheck{{$contract->id}}">
+                                <label class="btn btn-outline-primary  pt-3" for="btncheck{{$contract->id}}"></label>
+                            </td>
+                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
+                            <td class="pt-2">МАОУДО «ЭДМШ»</td>
+                            <td class="pt-2">29.12.2017</td>
+                            <td class="pt-0 mt-0">
+                                <x-table.buttons/>
+                            </td>
+                        </tr>
+                    @endforeach
+                        {{-- <tr class="">
                             <td>
                                 <input type="checkbox" class="btn-check" id="btncheck1">
                                 <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
@@ -49,127 +63,7 @@
                             <td class="pt-0 mt-0">
                                 <x-table.buttons/>
                             </td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <input type="checkbox" class="btn-check" id="btncheck1">
-                                <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                            </td>
-                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
-                            <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                            <td class="pt-2">29.12.2017</td>
-                            <td class="pt-0 mt-0">
-                                <x-table.buttons/>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <input type="checkbox" class="btn-check" id="btncheck1">
-                                <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                            </td>
-                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
-                            <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                            <td class="pt-2">29.12.2017</td>
-                            <td class="pt-0 mt-0">
-                                <x-table.buttons/>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <input type="checkbox" class="btn-check" id="btncheck1">
-                                <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                            </td>
-                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
-                            <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                            <td class="pt-2">29.12.2017</td>
-                            <td class="pt-0 mt-0">
-                                <x-table.buttons/>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <input type="checkbox" class="btn-check" id="btncheck1">
-                                <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                            </td>
-                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
-                            <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                            <td class="pt-2">29.12.2017</td>
-                            <td class="pt-0 mt-0">
-                                <x-table.buttons/>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <input type="checkbox" class="btn-check" id="btncheck1">
-                                <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                            </td>
-                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
-                            <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                            <td class="pt-2">29.12.2017</td>
-                            <td class="pt-0 mt-0">
-                                <x-table.buttons/>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <input type="checkbox" class="btn-check" id="btncheck1">
-                                <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                            </td>
-                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
-                            <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                            <td class="pt-2">29.12.2017</td>
-                            <td class="pt-0 mt-0">
-                                <x-table.buttons/>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <input type="checkbox" class="btn-check" id="btncheck1">
-                                <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                            </td>
-                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
-                            <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                            <td class="pt-2">29.12.2017</td>
-                            <td class="pt-0 mt-0">
-                                <x-table.buttons/>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <input type="checkbox" class="btn-check" id="btncheck1">
-                                <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                            </td>
-                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
-                            <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                            <td class="pt-2">29.12.2017</td>
-                            <td class="pt-0 mt-0">
-                                <x-table.buttons/>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <input type="checkbox" class="btn-check" id="btncheck1">
-                                <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                            </td>
-                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
-                            <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                            <td class="pt-2">29.12.2017</td>
-                            <td class="pt-0 mt-0">
-                                <x-table.buttons/>
-                            </td>
-                        </tr>
-                        <tr class="">
-                            <td>
-                                <input type="checkbox" class="btn-check" id="btncheck1">
-                                <label class="btn btn-outline-primary  pt-3" for="btncheck1"></label>
-                            </td>
-                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
-                            <td class="pt-2">МАОУДО «ЭДМШ»</td>
-                            <td class="pt-2">29.12.2017</td>
-                            <td class="pt-0 mt-0">
-                                <x-table.buttons/>
-                            </td>
-                        </tr>
+                        </tr> --}}
                     </tbody>
                 </table>
             </div>

@@ -5,9 +5,11 @@
                 Договоры МАКС
             </a>
             <ul class="nav col-12 col-lg-auto  mb-2  mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-white">Клиенты</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Импорт</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Договоры</a></li>
+                <li><a href="{{route('client.index')}}" class="nav-link px-2 text-white">Клиенты</a></li>
+                <li><a href="{{route('contract.index')}}" class="nav-link px-2 text-white">Договоры</a></li>
+                <li><a href="{{route('import')}}" class="nav-link px-2 text-white">Импорт</a></li>
+                {{-- <li><a href="{{route('logout')}}" class="nav-link px-2 text-white">Импорт</a></li> --}}
+                <li><button id="logout" class="btn btn-outline-light">Выход</button></li>
             </ul>
         </div>
     </div>
