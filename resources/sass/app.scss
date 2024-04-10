@@ -25,3 +25,33 @@
 .table_btn{
     --bs-icon-link-transform: translate3d(.225rem, -.225rem, 0);
 }
+
+
+
+
+table {
+    .table_overflow {
+        text-overflow: ellipsis;
+
+        /* required for  text-overflow*/ 
+        white-space: nowrap;
+        overflow-x: hidden;
+    }
+    // for small <td>
+    .table_crop_s {
+        max-width:15em;
+        width:15em;
+    }
+    // for medium-sized <td>
+    .table_crop_m {
+        max-width:25em;
+        width:25em;
+    }
+
+
+    td {
+        @extend .table_overflow;
+    }
+    // min-width: 50em;
+    // @apply .w-50;
+}

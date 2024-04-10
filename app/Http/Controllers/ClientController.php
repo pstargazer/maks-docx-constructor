@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ClientController extends Controller
 {
 
-    public function shortname($name){
+    protected function shortname($name){
         // FIXME: NORMALIZE DB
         // $name = strpos($name, "\"");
         // if there's no quotation for name
@@ -28,19 +28,23 @@ class ClientController extends Controller
         return $name;
     }
 
+    protected function makeInitials($name, $th_name = ''){
+        // return $surname[0] .". {$th_name[0]}.";
+        if(strlen($th_name) > 0) return mb_substr($name,0,1) . "." . mb_substr($th_name,0,1) . ".";
+        else return mb_substr($name,0,1);
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $clients = Client::all()->toArray();
+        $clients = Client::paginate(10);
         foreach ($clients as $idx=>$client){
             // dump($client);
-            $newValues = [
-                'name_prefix_short' => $this->shortname($clients[$idx]['name_prefix'])
-            ];
-            $clients[$idx] = array_merge($clients[$idx], $newValues);
-
+            $client->name_prefix_short = $this->shortname($client->name_prefix);
+            $client->initials = $this->makeInitials($client->delegate_name, $client->delegate_th_name);
         }
         // dd($clients);
         return view('client.index', compact('clients'));

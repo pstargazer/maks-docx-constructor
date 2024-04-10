@@ -1,3 +1,9 @@
 *.sqlite*
 # secure the import data 
-*.csv* 
+*csv* 
+*.zip
+*.tar.*
+*.7z
+*.rar
+
+csv/**
