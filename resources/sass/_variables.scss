@@ -1,34 +1,7 @@
 // Body
-$body-bg: white;
-$primary: #555;
-$pagination-active-bg: $primary;
-
-$active-color: $success; 
-
-$pagination-active-border: $active-color;
-$pagination-hover-color: $active-color;
-$pagination-hover-bg: $active-color;
-
-$pagination-focus-bg: tint-color($active-color, .5);
-$pagination-focus-color: $active-color;
-
-// ovverride bootstrap colors
-$theme-colors: (
-  "primary":    $primary,
-  "secondary":  $secondary, // gray
-  "success":    $success,
-  "info":       $info,
-  "warning":    $warning,
-  "danger":     $danger,
-  "light":      $light,
-  "dark":       $dark,
-  "link-color": $red
-);
-
-
-$link-color: $primary;
+$body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Inter', sans-serif;
+$font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;

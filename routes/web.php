@@ -51,7 +51,8 @@ Route::middleware('auth')->group(function(){
         Route::controller('ClientController')->group(function (){
             // Route::get('/','index')->name('client.index');
             // Route::view('/', 'client.index');
-            Route::get('/', 'index')->name('index');
+            Route::get('/', function(){})->name('index');
+            Route::get('/{id}', 'index')->name('index');
             Route::view('/add', 'client.create');
             Route::post('/add', 'store');
             // Route::get('/add','index')->name('client.create');
@@ -69,3 +70,14 @@ Route::post('/import', function () {
 Route::get('/others', function () {
     return view("others.others");
 });
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    "namespace" => 'App\Http\Controllers'
+], function(){
+    Route::controller('UserController')->group(function (){
+        Route::get('/', 'index')->name('index');
+        Route::post('/update', 'update')->name('update');
+    });
+});
+
