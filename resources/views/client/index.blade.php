@@ -14,16 +14,17 @@
 </h1>
 <div class="row gap-5">
     <div class="col-md" style="max-width: 1fr">
-        <form action="#" class="pt-3 d-flex gap-3 mb-2">
-            <div class="input-group rounded border-black border-1 border w-25">
+        <form action="#" class="pt-3 d-flex justify-content-between  mb-2">
+            <div class="w-auto input-group rounded border-black border-1 border w-25">
                 <input type="search" class="form-control rounded border-0" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                 <span class="input-group-text border-0 bg-transparent " id="search-addon">
                     <i class="bi bi-search"></i>
                 </span>
             </div>
 
-            <button type="button" class="btn btn-outline-success">Редактировать</button>
-            <button type="button" class="btn btn-outline-danger">Удалить</button>
+            <button type="button" disabled class="btn btn-outline-success">Редактировать</button>
+            <button type="button" disabled class="btn btn-outline-danger">Удалить</button>
+            <a href="{{route('client.create')}}" class="btn btn-outline-primary">Добавить</a>
         </form>
 
 
@@ -62,10 +63,8 @@
                 </tr>
             @endforeach
             </tbody>
-            <tfoot>
-                {{ $clients->links('pagination::bootstrap-5') }}
-            </tfoot>
         </table>
+        {{ $clients->links('pagination::bootstrap-5') }}
     </div>
     <x-client-card/>
 </div>

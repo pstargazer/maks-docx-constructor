@@ -1,38 +1,73 @@
 @extends("layouts.master")
 
-@section('content')
-<x-progressBar/>
-    <section class="pt-4">
-        <h1 class="mb-4">Добавление клиента</h1>
+@section('title')Добавление клиента@endsection
 
-        <form class="row">
+@section('bar')
+    <x-progressBar/>
+@endsection
+
+@section('content')
+    <section class="pt-4">
+        
+        <form class="row" method="post">
+            @csrf
+            @error('bank_id')
+            <div class="alert alert-danger" role="alert">
+                {{ $errors->first() }}
+            </div>
+            @enderror
             <div class="col-4">
-                <input type="text" class="form-control mb-3" placeholder="Название организации">
-                <input type="text" class="form-control mb-3" placeholder="Адрес">
-                <input type="text" class="form-control mb-3" placeholder="Фамилия">
-                <input type="text" class="form-control mb-3" placeholder="Имя">
-                <input type="text" class="form-control mb-3" placeholder="Отчество">
-                <input type="text" class="form-control mb-3" placeholder="Должность">
+            <h1 class="mb-4">@yield('title')</h1>
+
+                <div class="mb-3">
+                    <input required value="{{old('name_prefix')}}" type="text" class="form-control"   name="name_prefix" placeholder="Статус организации д/сокращения" title="Название компании которое будет сокращаться">
+                    <div class="form-text" id="basic-addon4">Например: "Общество с ограниченной ответственностью" преобразуется в ООО</div>
+                </div>
+                <div class="mb-3">
+                    <input required value="{{old('company_name')}}" type="text" class="form-control" name="company_name" placeholder="Название организации">
+                    <div class="form-text" id="basic-addon4">Название компании,прочий текст который не сокращается</div>
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Адрес</label>
+                    <input required value="{{old('address')}}" type="text" class="form-control" name="address" id="address">
+                </div>
+                <input required value="{{old('phone')}}" type="text" class="form-control mb-3" name="phone" id="phone" placeholder="Контактный телефон">
+                <div class="mb-5">
+                    <h2>Представитель компании</h2>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">ФИО</span>
+                        <input required value="{{old('delegate_surname')}}" type="text" class="form-control" name="delegate_surname" id="delegate_surname">
+                        <input required type="text" value="{{old('delegate_name')}}" class="form-control" name="delegate_name" id="delegate_name"  >
+                        <input type="text" value="{{old('delegate_th_name')}}" class="form-control" name="delegate_th_name" id="delegate_th_name">
+                    </div>
+                    <label value="{{old('delegate_post')}}" for="delegate_post" class="form-label">Должность</label>
+                    <input required value="{{old('delegate_post')}}" type="text"   class="form-control mb-3" name="delegate_post" id="delegate_post">
+                </div>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control mb-3" placeholder="БИК">
-                <input type="text" class="form-control mb-3" placeholder="ИНН">
-                <input type="text" class="form-control mb-3" placeholder="КПП">
-                <input type="text" class="form-control mb-3" placeholder="Расч. счет">
-                <input type="text" class="form-control mb-3" placeholder="Кор. счет">
-            </div>
-            <div class="col-4">
-                <select class="form-select" aria-label="Default select example">
+                <h2>Реквизиты</h2>
+                <label class="form-label">БИК</label>
+                <input required value="{{old('bik')}}"   type="text" class="form-control mb-3" name="bik">
+                <label class="form-label">ИНН</label>
+                <input required  value="{{old('inn')}}" type="text" class="form-control mb-3" name="inn">
+                <label class="form-label">КПП</label>
+                <input required value="{{old('kpp')}}" type="text" class="form-control mb-3" name="kpp">
+                <label class="form-label">Расчетный счет</label>
+                <input required value="{{old('payment_account')}}" type="text" class="form-control mb-3" name="payment_account">
+                <label class="form-label">Кор. счет</label>
+                <input required value="{{old('correspondent_account')}}"  type="text" class="form-control mb-3" name="correspondent_account">
+                <select required class="form-select" aria-label="Default select example" name="bank_id" id="bank">
                     <option selected>Выберите банк</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    @foreach ($banks as $bank)
+                        <option value="{{$bank->id}}">{{$bank->name}}</option>
+                    @endforeach
                 </select>
             </div>
+            <div class="col-4">
+
+            </div>
             <div class="col-4 pt-3">
-                <div class="btn btn-success w-100 ">
-                    Сохранить
-                </div>
+                <input required type="submit" class="btn btn-success w-100">
             </div>
         </form>
     </section>
