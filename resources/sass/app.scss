@@ -27,13 +27,13 @@
 }
 
 
-.progress_bar {
-    // transition: .5s;
-    -webkit-transition: width 30.0s ease !important;
-       -moz-transition: width 30.0s ease !important;
-         -o-transition: width 30.0s ease !important;
-            transition: width 30.0s ease !important;
-  }
+.progress_bar > *{
+    transition: .3s !important;
+    -webkit-transition: width .3s ease !important;
+       -moz-transition: width .3s ease !important;
+         -o-transition: width .3s ease !important;
+            transition: width .3s ease !important;
+}
 
 table {
     .table_overflow {

@@ -11,16 +11,7 @@ spoilers.forEach(spoiler => {
 
 const inputsArr = []
 const inputs = document.querySelectorAll(['.form-control', 'select'])
-// console.log(Array.from(inputs.values()))
-// const selects = document.querySelectorAll('select')
 const form = document.querySelector('form')
-/*
-console.log(inputs.values())
-let inp = inputs.values()
-for(el in inputs.values()) {
-   console.log( el )
-}
-*/
 
 function setPercent(percent){
    console.log(percent)
@@ -38,7 +29,10 @@ function computePercent() {
 }
 
 function updateBar() {
-   setPercent(computePercent())
+   let percent = computePercent()
+   setPercent(percent)
+   if(percent == 100) document.querySelector('[type="submit"]').removeAttribute('disabled')
+   else document.querySelector('[type="submit"]').setAttribute('disabled','')
 }
 
 inputs.forEach(el => {
@@ -47,6 +41,10 @@ inputs.forEach(el => {
       el.setAttribute('data-id', idx)
       // console.log(el);
       el.addEventListener('input', e => {
+         console.log(e)
+         if(e.data == null && e.inputType == 'deleteContentBackward') {
+            e.target.value = null
+         }
          updateBar()
       })
    }

@@ -13,15 +13,15 @@
             @csrf
             @error('bank_id')
             <div class="alert alert-danger" role="alert">
-                {{ $errors->first() }}
+                {{ $errors->errors() }}
             </div>
             @enderror
             <div class="col-4">
             <h1 class="mb-4">@yield('title')</h1>
 
                 <div class="mb-3">
-                    <input required value="{{old('name_prefix')}}" type="text" class="form-control"   name="name_prefix" placeholder="Статус организации д/сокращения" title="Название компании которое будет сокращаться">
-                    <div class="form-text" id="basic-addon4">Например: "Общество с ограниченной ответственностью" преобразуется в ООО</div>
+                    <input required value="{{old('name_prefix')}}" type="text" class="form-control"   name="name_prefix" placeholder="Форма собственности" title="Название компании которое будет сокращаться">
+                    <div class="form-text" id="basic-addon4">Сокращается. Например: "Общество с ограниченной ответственностью" преобразуется в ООО</div>
                 </div>
                 <div class="mb-3">
                     <input required value="{{old('company_name')}}" type="text" class="form-control" name="company_name" placeholder="Название организации">
@@ -67,7 +67,7 @@
 
             </div>
             <div class="col-4 pt-3">
-                <input required type="submit" class="btn btn-success w-100">
+                <input disabled type="submit" class="btn btn-success w-100">
             </div>
         </form>
     </section>
