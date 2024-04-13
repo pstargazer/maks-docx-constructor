@@ -9,7 +9,12 @@
                 <li><a href="{{route('contract.index')}}" class="nav-link px-2 text-white">Договоры</a></li>
                 <li><a href="{{route('import')}}" class="nav-link px-2 text-white">Импорт</a></li>
                 @auth
-                    <li><button id="logout" class="btn btn-outline-light">Выход</button></li>
+                <li>
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <button id="logout" class="btn btn-outline-light">Выход</button>
+                    </form>
+                </li>
                 @endauth
             </ul>
         </div>
