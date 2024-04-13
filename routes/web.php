@@ -69,3 +69,5 @@ Route::post('/import', function () {
 Route::get('/others', function () {
     return view("others.others");
 });
+
+// Route::view('/indextest', 'layouts.);

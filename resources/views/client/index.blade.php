@@ -30,19 +30,19 @@
 
         <table class="table table-hover text-nowrap border">
             <thead>
-            <tr>
-                <th>
-                    <input type="checkbox" class="btn-check" id="btncheckAll">
-                    <label class="btn btn-outline-primary  pt-3" for="btncheckAll"></label>
-                </th>
-                <th>Название</th>
-                <th>Ф.И.О</th>
-                <th>Телефон</th>
-                <th></th>
-            </tr>
+                <tr>
+                    <th>
+                        <input type="checkbox" class="btn-check" id="btncheckAll">
+                        <label class="btn btn-outline-primary  pt-3" for="btncheckAll"></label>
+                    </th>
+                    <th>Название</th>
+                    <th>Ф.И.О</th>
+                    <th>Телефон</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            @foreach ($clients as $client)  
+            @forelse ($clients as $client)  
                 <tr>
                     <td>
                         <input type="checkbox" class="btn-check" id="btncheck{{$client['id']}}">
@@ -61,7 +61,15 @@
                         <x-table.two-buttons/>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td></td>
+                    <td>Клиенты не найдены</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            @endforelse
             </tbody>
         </table>
         {{ $clients->links('pagination::bootstrap-5') }}

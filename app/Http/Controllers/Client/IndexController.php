@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
+    protected $PER_PAGE = 10;
     protected function shortname($name){
         // FIXME: NORMALIZE DB
         // $name = strpos($name, "\"");
@@ -42,13 +43,40 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $clients = Client::paginate(10);
-        foreach ($clients as $idx => $client) {
+        $input = $request->input();
+        // dd($input);
+
+        $clients = null;
+        if (isset($input['search'])){
+            $clients = Client::where(["name_prefix", "company_name", "delegate_surname", "delegate_name", "delegate_th_name"], 
+            // $clients = Client::where("name_prefix, company_name, delegate_surname, delegate_name, delegate_th_name", 
+            "like", 
+            "%{$input['search']}%", "OR")->paginate($this->PER_PAGE);
+
+            // $clients = Client::where([
+                // ["name_prefix", "like", "%{$input['search']}%"], 
+                // ["company_name", "like", "%{$input['search']}%"], 
+                // ["delegate_surname", "like", "%{$input['search']}%"], 
+                // ["delegate_name", "like", "%{$input['search']}%"], 
+                // ["delegate_th_name", "like", "%{$input['search']}%"]
+            // ])->paginate($this->PER_PAGE);
+
+        }
+
+        $single = null;
+        if(isset($input['client_id'])){
+            $single = Client::find($input['client_id']);
+        }
+
+        if(empty($clients)) {
+            $clients = Client::paginate($this->PER_PAGE);
+        }
+        foreach ($clients as $client) {
             // dump($client);
             $client->name_prefix_short = $this->shortname($client->name_prefix);
             $client->initials = $this->makeInitials($client->delegate_name, $client->delegate_th_name);
         }
         // dd($clients);
-        return view('client.index', compact('clients'));
+        return view('client.index2', compact('clients', 'single'));
     }
 }
