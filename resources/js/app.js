@@ -1,4 +1,4 @@
-import './bootstrap';
+import 'bootstrap';
 
 const spoilers = document.querySelectorAll('.spoiler');
 
@@ -8,3 +8,4 @@ spoilers.forEach(spoiler => {
         spoiler.classList.toggle('bg-black')
    })
 })
+

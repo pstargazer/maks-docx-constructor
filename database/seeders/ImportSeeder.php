@@ -47,7 +47,7 @@ class ImportSeeder extends Seeder
                 $data = fgetcsv($csvData,  null, ',');
                 // continue;
             // }
-            Client::save();
+            // Client::save();
         }
         fclose($csvData);
     }

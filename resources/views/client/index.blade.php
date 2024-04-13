@@ -67,6 +67,6 @@
             </tfoot>
         </table>
     </div>
-    <x-client-card/>
+    <x-client-card  />
 </div>
 @endsection

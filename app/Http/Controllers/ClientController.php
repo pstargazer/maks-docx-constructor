@@ -38,7 +38,7 @@ class ClientController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
         $clients = Client::paginate(10);
         foreach ($clients as $idx=>$client){
@@ -47,6 +47,7 @@ class ClientController extends Controller
             $client->initials = $this->makeInitials($client->delegate_name, $client->delegate_th_name);
         }
         // dd($clients);
+        $looooong = "";
         return view('client.index', compact('clients'));
     }
 

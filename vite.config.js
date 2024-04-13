@@ -10,6 +10,7 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
+                'node_modules/bootstrap/dist/js/bootstrap.min.js',
             ],
             
             refresh: true,

@@ -14,16 +14,8 @@ class IndexController extends Controller
     public function __invoke(Request $request)
     {
         //
-        // $contracts = Contract::all();
-        $contracts = [
-            [
-                "id" => 1,
-                "title" => 'КМ-ЗПДНа-2018-2',
-                "client" => 'МАОУДО «ЭДМШ»',
-                "date" => '29.12.2017'
-            ]
-        ];
-        
+        $contracts = Contract::all();
+       
         return view('contract.index', compact('contracts'));
     }
 }
