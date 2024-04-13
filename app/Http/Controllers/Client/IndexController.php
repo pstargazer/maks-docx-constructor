@@ -48,24 +48,23 @@ class IndexController extends Controller
 
         $clients = null;
         if (isset($input['search'])){
-            $clients = Client::where(["name_prefix", "company_name", "delegate_surname", "delegate_name", "delegate_th_name"], 
+            // $clients = Client::where(["name_prefix", "company_name", "delegate_surname", "delegate_name", "delegate_th_name"], 
             // $clients = Client::where("name_prefix, company_name, delegate_surname, delegate_name, delegate_th_name", 
-            "like", 
-            "%{$input['search']}%", "OR")->paginate($this->PER_PAGE);
+            // "like", 
+            // "%{$input['search']}%", "OR")->paginate($this->PER_PAGE);
 
-            // $clients = Client::where([
-                // ["name_prefix", "like", "%{$input['search']}%"], 
-                // ["company_name", "like", "%{$input['search']}%"], 
-                // ["delegate_surname", "like", "%{$input['search']}%"], 
-                // ["delegate_name", "like", "%{$input['search']}%"], 
-                // ["delegate_th_name", "like", "%{$input['search']}%"]
-            // ])->paginate($this->PER_PAGE);
+            $clients = Client::orWhere("name_prefix", "like", "%{$input['search']}%" )
+                ->orWhere("company_name", "like", "%{$input['search']}%" )
+                ->orWhere("delegate_surname", "like", "%{$input['search']}%") 
+                ->orWhere("delegate_name", "like", "%{$input['search']}%")
+                ->orWhere("delegate_th_name", "like", "%{$input['search']}%")
+                ->paginate($this->PER_PAGE);
 
         }
 
         $single = null;
-        if(isset($input['client_id'])){
-            $single = Client::find($input['client_id']);
+        if(isset($input['record_id'])){
+            $single = Client::find($input['record_id']);
         }
 
         if(empty($clients)) {

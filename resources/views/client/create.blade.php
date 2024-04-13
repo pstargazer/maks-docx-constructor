@@ -11,11 +11,13 @@
         
         <form class="row" method="post">
             @csrf
-            @error('bank_id')
+            {{-- @error('*') --}}
+            @if($errors->any())
             <div class="alert alert-danger" role="alert">
-                {{ $errors->errors() }}
+                {{ $errors }}
             </div>
-            @enderror
+            @endif
+            {{-- @enderror --}}
             <div class="col-4">
             <h1 class="mb-4">@yield('title')</h1>
 
@@ -57,7 +59,7 @@
                 <label class="form-label">Кор. счет</label>
                 <input required value="{{old('correspondent_account')}}"  type="text" class="form-control mb-3" name="correspondent_account">
                 <select required class="form-select" aria-label="Default select example" name="bank_id" id="bank">
-                    <option selected>Выберите банк</option>
+                    <option selected value="">Выберите банк</option>
                     @foreach ($banks as $bank)
                         <option value="{{$bank->id}}">{{$bank->name}}</option>
                     @endforeach
@@ -72,3 +74,8 @@
         </form>
     </section>
 @endsection
+
+
+@push('page-scripts')
+@vite(['resources/js/create_form.js'])
+@endpush

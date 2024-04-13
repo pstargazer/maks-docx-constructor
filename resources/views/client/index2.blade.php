@@ -2,8 +2,10 @@
 
 @section('index-title', "Список клиентов | {env('APP_NAME')}")
 
-@push('top-buttons')
-@endpush
+@push('top-buttons') <a href="{{route('client.create')}}" class="btn btn-outline-primary">Добавить</a>@endpush
+@push('top-buttons') <button type="button" disabled class="btn btn-success">Редактировать</button>@endpush
+@push('top-buttons') <button type="button" disabled class="btn btn-danger">Удалить</button>@endpush
+
 
 @section('index-table')
 <table class="table table-hover text-nowrap border">
@@ -24,7 +26,7 @@
      @forelse ($clients as $client)  
         <tr>
             <td>
-                <input type="checkbox" class="btn-check" id="btncheck{{$client['id']}}">
+                <input type="checkbox" class="btn-check" data-id="{{$client['id']}}" id="btncheck{{$client['id']}}">
                 <label class="btn btn-outline-primary  pt-3" for="btncheck{{$client['id']}}"></label>
             </td>
             <td class="pt-2 table_crop_m" title="{{$client->name_prefix_short}} {{$client->company_name}}">
@@ -58,7 +60,8 @@
 
 @section('preview')
     @if (!empty($single))
-        
-        <x-client-card/>
+        <x-client-card :data="$single" />
     @endif
 @endsection
+
+@push('page-scripts') @vite(['resources/js/indexes/index_page.js']) @endpush

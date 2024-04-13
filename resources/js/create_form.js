@@ -1,7 +1,9 @@
 
 const inputsArr = []
-const inputs = document.querySelectorAll(['.form-control', 'select'])
+const inputs = document.querySelectorAll('[required]')
+// const inputs = document.querySelectorAll('.form-control', 'select')
 const form = document.querySelector('form')
+
 
 function setPercent(percent){
    console.log(percent)
@@ -26,7 +28,7 @@ function updateBar() {
 }
 
 inputs.forEach(el => {
-   if(el.hasAttribute('required')){
+   // if(el.hasAttribute('required')){
       let idx = inputsArr.push(el)
       el.setAttribute('data-id', idx)
       // console.log(el);
@@ -37,6 +39,9 @@ inputs.forEach(el => {
          }
          updateBar()
       })
-   }
-
+   // }
+   
 }) 
+document.onload() =  () => {
+   updateBar()
+}
