@@ -24,9 +24,9 @@
     <tbody>
     {{-- @yield('index-table') --}}
      @forelse ($clients as $client)  
-        <tr>
+        <tr data-id="{{$client['id']}}">
             <td>
-                <input type="checkbox" class="btn-check" data-id="{{$client['id']}}" id="btncheck{{$client['id']}}">
+                <input type="checkbox" class="btn-check" id="btncheck{{$client['id']}}">
                 <label class="btn btn-outline-primary  pt-3" for="btncheck{{$client['id']}}"></label>
             </td>
             <td class="pt-2 table_crop_m" title="{{$client->name_prefix_short}} {{$client->company_name}}">
@@ -60,7 +60,7 @@
 
 @section('preview')
     @if (!empty($single))
-        <x-client-card :data="$single" />
+        <x-client-card :data="$single" zoom="5"/>
     @endif
 @endsection
 

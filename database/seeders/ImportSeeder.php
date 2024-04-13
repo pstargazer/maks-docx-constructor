@@ -43,11 +43,7 @@ class ImportSeeder extends Seeder
                 'correspondent_account' => $data[13],
                 'bank_id' => (int)($data[14])
             ]);
-            // if ($data[0] = 'id') {
-                $data = fgetcsv($csvData,  null, ',');
-                // continue;
-            // }
-            Client::save();
+            $data = fgetcsv($csvData,  null, ',');
         }
         fclose($csvData);
     }
@@ -87,6 +83,6 @@ class ImportSeeder extends Seeder
         $datasetVerion = '1';
         $this->importBanks($datasetVerion);
         $this->importClients($datasetVerion);
-        printf('Данные успешно импортированы');
+        printf('\nДанные успешно импортированы\n');
     }
 }

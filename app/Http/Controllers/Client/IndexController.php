@@ -5,11 +5,22 @@ namespace App\Http\Controllers\Client;
 
 use App\Models\Client;
 use App\Http\Controllers\Controller;
+use Http;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
     protected $PER_PAGE = 10;
+
+    protected function getCoords($address) {
+        $response = Http::get("https://nominatim.openstreetmap.org/search?q={$address}&format=json");
+            
+        $body = json_decode($response->body(), JSON_UNESCAPED_UNICODE); 
+        // dd($body);
+        if(count($body) >1) return array($body[0]['lat'], $body[0]['lon']);
+        else if (!isset($body['lat']) || !isset($body['lon'])) return array(0,0);
+    }
+
     protected function shortname($name){
         // FIXME: NORMALIZE DB
         // $name = strpos($name, "\"");
@@ -59,12 +70,21 @@ class IndexController extends Controller
                 ->orWhere("delegate_name", "like", "%{$input['search']}%")
                 ->orWhere("delegate_th_name", "like", "%{$input['search']}%")
                 ->paginate($this->PER_PAGE);
-
         }
 
         $single = null;
         if(isset($input['record_id'])){
             $single = Client::find($input['record_id']);
+            $single->name_prefix_short = $this->shortname($single->name_prefix);
+            $single->initials = $this->makeInitials($single->delegate_name, $single->delegate_th_name);
+            $coords = $this->getCoords($single->address);
+
+            $single->lat = $coords[0];
+            $single->lon = $coords[1];
+
+            // $single->lat = "61.8021048";
+            // $single->lon = "50.74312225";
+
         }
 
         if(empty($clients)) {

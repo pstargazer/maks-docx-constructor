@@ -23,33 +23,9 @@
                 <!-- </button> -->
             </div>
             @stack('top-buttons')
-
-            {{-- <button type="button" disabled class="btn btn-success">Редактировать</button> --}}
-            {{-- <button type="button" disabled class="btn btn-danger">Удалить</button> --}}
-            {{-- <a href="{{route('client.create')}}" class="btn btn-outline-primary">Добавить</a> --}}
         </form>
 
         @yield('index-table')
-        {{-- <table class="table table-hover text-nowrap border">
-            <thead>
-                <tr>
-                    <th>
-                        <input type="checkbox" class="btn-check" id="btncheckAll">
-                        <label class="btn btn-outline-primary  pt-3" for="btncheckAll"></label>
-                    </th>
-                    <th>Название</th>
-                    <th>Ф.И.О</th>
-                    <th>Телефон</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            @yield('index-table')
-            
-           
-            </tbody>
-        </table>
-        {{ $clients->links('pagination::bootstrap-5') }} --}}
     </div>
     
     <div class="col-sm"> 
