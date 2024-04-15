@@ -190,8 +190,8 @@ return [
         'bik' => "БИК",
         'inn' => "ИНН",
         'kpp' => "КПП",
-        "payment account" => "Расчетный счёт",
-        'correspondent account' => "Корреспондентский счёт"
+        "payment_account" => "Расчетный счёт",
+        'correspondent_account' => "Корреспондентский счёт"
     ],
 
 ];
