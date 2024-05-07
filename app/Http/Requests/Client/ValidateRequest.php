@@ -17,7 +17,7 @@ class ValidateRequest extends FormRequest
         return true;
     }
 
-    protected function failedValidation( $validator)
+    protected function failedValidation($validator)
     {
         if ($this->expectsJson()) {
             $errors = (new ValidationException($validator))->errors();
