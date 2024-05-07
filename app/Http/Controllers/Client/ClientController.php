@@ -22,15 +22,15 @@ class ClientController extends Controller
      */
     public function store(ClientValidateRequest $request)
     {
-        dd($request);
-        $validator = \Validator::make();
-        if ($validator->fails()) {
-            $error = $validator->errors()->first();
-            // return $error;
-            // return redirect('client.add')->withErrors($validator, 'address');
-            return Redirect::back()->withErrors($validator);
-        }
-        return redirect('client.index');
+        // dd($request);
+        // $validator = \Validator::make();
+        // if ($validator->fails()) {
+        //     $error = $validator->errors()->first();
+        //     return Redirect::back()->withErrors($validator);
+        // }
+        $validated = $request->validated();
+        Client::create($validated);
+        return redirect(route('client.index'));
     }
 
     /**

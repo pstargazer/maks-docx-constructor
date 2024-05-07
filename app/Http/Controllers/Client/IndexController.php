@@ -13,12 +13,17 @@ class IndexController extends Controller
     protected $PER_PAGE = 10;
 
     protected function getCoords($address) {
-        $response = Http::get("https://nominatim.openstreetmap.org/search?q={$address}&format=json");
-            
-        $body = json_decode($response->body(), JSON_UNESCAPED_UNICODE); 
-        // dd($body);
-        if(count($body) >1) return array($body[0]['lat'], $body[0]['lon']);
-        else if (!isset($body['lat']) || !isset($body['lon'])) return array(0,0);
+        // $response = null;
+        try {
+            $response = Http::get("https://nominatim.openstreetmap.org/search?q={$address}&format=json");    
+            $body = json_decode($response->body(), JSON_UNESCAPED_UNICODE); 
+            // dd($body);
+            if(count($body) >1) return array($body[0]['lat'], $body[0]['lon']);
+            else if (!isset($body['lat']) || !isset($body['lon'])) return array(0,0);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return array(0,0);
+        }
     }
 
     protected function shortname($name){
