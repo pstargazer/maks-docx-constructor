@@ -5,9 +5,9 @@ let url = new URL(window.location.href);
 
 
 function viewRecord(url, id){
+    // paste id to GET
     url.searchParams.set('record_id', id);
     window.location.replace(url)
-    
 }
 
 records.forEach(el => {
