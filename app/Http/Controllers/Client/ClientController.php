@@ -42,6 +42,17 @@ class ClientController extends Controller
     }
 
     /**
+     * Edit the specified resource in storage.
+     */
+    public function edit($id)
+    {
+        $client = Client::find($id);
+        $banks = Bank::all();
+        // return redirect(route('client.edit'));
+        return view('client.edit',  compact('banks', 'client'));
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Client $client)

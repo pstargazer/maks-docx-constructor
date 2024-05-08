@@ -35,13 +35,17 @@ inputs.forEach(el => {
       el.addEventListener('input', e => {
          console.log(e)
          if(e.data == null && e.inputType == 'deleteContentBackward') {
-            e.target.value = null
+            // e.target.value = null
+            updateBar()
          }
          updateBar()
       })
    // }
    
 }) 
-document.onload() =  () => {
+
+addEventListener("DOMContentLoaded", (event) => {
    updateBar()
-}
+
+}); 
+

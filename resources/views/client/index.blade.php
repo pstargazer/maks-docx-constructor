@@ -74,6 +74,6 @@
         </table>
         {{ $clients->links('pagination::bootstrap-5') }}
     </div>
-    <x-client-card  />
+    <x-client-card/>
 </div>
 @endsection

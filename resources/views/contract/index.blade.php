@@ -44,7 +44,7 @@
                                 {{-- <input type="checkbox" class="btn-check" id="btncheck{{$contract->id}}"> --}}
                                 {{-- <label class="btn btn-outline-primary  pt-3" for="btncheck{{$contract->id}}"></label> --}}
                             </td>
-                            <td class="pt-2">{{$contract}}</td>
+                            <td class="pt-2">КМ-ЗПДНа-2018-2</td>
                             <td class="pt-2">МАОУДО «ЭДМШ»</td>
                             <td class="pt-2">29.12.2017</td>
                             <td class="pt-0 mt-0">

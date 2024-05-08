@@ -53,8 +53,12 @@ Route::middleware('auth')->group(function(){
         Route::controller('ClientController')->group(function (){
             // Route::get('/','index')->name('client.index');
             // Route::view('/', 'client.index');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::post('/edit/{id}','update')->name('update');
+
             Route::get('/add', 'create')->name('create');
             Route::post('/add', 'store')->name('store');
+
         });
     });
 
@@ -69,16 +73,5 @@ Route::post('/import', function () {
 Route::get('/others', function () {
     return view("others.others");
 });
-Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    "namespace" => 'App\Http\Controllers'
-], function(){
-    Route::controller('UserController')->group(function (){
-        Route::get('/', 'index')->name('index');
-        Route::post('/update', 'update')->name('update');
-    });
-});
-
 
 // Route::view('/indextest', 'layouts.);

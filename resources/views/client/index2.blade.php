@@ -29,17 +29,17 @@
                 <input type="checkbox" class="btn-check" id="btncheck{{$client['id']}}">
                 <label class="btn btn-outline-primary  pt-3" for="btncheck{{$client['id']}}"></label>
             </td>
-            <td class="pt-2 table_crop_m" title="{{$client->name_prefix_short}} {{$client->company_name}}">
+            <td class="pt-2 table_crop_m clickable" title="{{$client->name_prefix_short}} {{$client->company_name}}">
                 {{$client->name_prefix_short}} {{$client->company_name}}
             </td>
-            <td class="pt-2 table_crop_s" title="{{$client->delegate_surname}} {{$client->initials}}">
+            <td class="pt-2 table_crop_s clickable" title="{{$client->delegate_surname}} {{$client->initials}}">
                 {{$client->delegate_surname}} {{$client->initials}}
             </td>
-            <td class="pt-2 table_crop_s" title="{{$client->phone}}">
+            <td class="pt-2 table_crop_s clickable" title="{{$client->phone}}">
                 {{$client->phone}}
             </td>
             <td class="pt-0 mt-0">
-                <x-table.two-buttons/>
+                <x-table.two-buttons :id="$client['id']"/>
             </td>
         </tr>
     @empty

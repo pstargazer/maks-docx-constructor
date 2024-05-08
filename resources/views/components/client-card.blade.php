@@ -46,13 +46,13 @@
         <div class="" style="width: 170px">
             <h6 class="">Кор. счет</h6>
             <div class="spoiler bg-black  position-absolute z-1 rounded-1 " style="height:2%; weight:100%; transition: 0.5s;">
-                <p class="position-relative z-2 user-select-none text-black ">30101810400000000640</p>
+                <p class="position-relative z-2 user-select-none text-black ">{{$data->correspondent_account}}</p>
             </div>
         </div>
         <div class="" style="width: 170px">
             <h6 class="">Расч. счёт</h6>
             <div class="spoiler bg-black  position-absolute z-1 rounded-1 " style="height:2%; weight:100%; transition: 0.5s;">
-                <p class="position-relative z-2 user-select-none text-black ">40703810428000008504</p>
+                <p class="position-relative z-2 user-select-none text-black ">{{$data->payment_account}}</p>
             </div>
         </div>
     </div>
