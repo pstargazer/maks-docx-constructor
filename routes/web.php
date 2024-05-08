@@ -69,5 +69,16 @@ Route::post('/import', function () {
 Route::get('/others', function () {
     return view("others.others");
 });
+Route::group([
+    'prefix' => 'admin',
+    'as' => 'admin.',
+    "namespace" => 'App\Http\Controllers'
+], function(){
+    Route::controller('UserController')->group(function (){
+        Route::get('/', 'index')->name('index');
+        Route::post('/update', 'update')->name('update');
+    });
+});
+
 
 // Route::view('/indextest', 'layouts.);
