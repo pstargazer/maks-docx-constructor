@@ -1,38 +1,46 @@
-<div class="col-sm">
+{{-- <div class="col-sm"> --}}
+@props(['data',"zoom"])
     <h2 class="py-4">Предпросмотр</h2>
     <hr class="mb-0">
-    <p class="mb-0">Муниципальное автономное учреждение дополнительного образования «Эжвинская детская музыкальная школа»</p>
+    <p class="mb-0">{{$data->name_prefix}} {{$data->company_name}}</p>
     <hr class="my-0">
-    <div class="d-flex align-items-center gap-3 pt-2">
-        <h4 class="mb-0">МАОУДО «ЭДМШ»</h4>
-        <p class="mb-0 fs-5">63-14-22</p>
+    {{-- <div class="d-flex align-items-center gap-3 pt-2"> --}}
+    <div>
+        <h4 class="mb-0">{{$data->name_prefix_short}} {{$data->company_name}}</h4>
+        <p class="mb-0 fs-5">{{$data->phone}}</p>
     </div>
-    <a href="#" class="fs-5">г. Сыктывкар, ул. Космонавтов, д.12\1 </a>
-    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d60569.619324912965!2d50.8002304!3d61.679206399999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sru!4v1712472076432!5m2!1sru!2sru" width="630" height="295" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-        <iframe src="https://maps.google.com/maps?q=65.856737, 10.616619&z=15&output=embed" width="630" height="295" frameborder="0" style="border:0"></iframe>
+    <a href="#" class="fs-5">{{$data->address}} </a>
+    <div class="d-flex">
+        @if($data->lon != 0 && $data->lat != 0)
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d{{$zoom}}!2d{{$data->lon}}!3d{{$data->lat}}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sru!4v1712472076432!5m2!1sru!2sru" height="295" style="border:0; width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d60569.619324912965!2d50.8002304!3d61.679206399999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sru!4v1712472076432!5m2!1sru!2sru" height="295" style="border:0; width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+        @else
+            Не удалось загрузить карту, проверьте проавильность адреса
+        @endif
+    </div>
     <div class="d-flex mt-2 flex-wrap gap-5" style="width: 650px">
         <div class="" style="width: 72px">
             <h6 class="" >БИК</h6>
             <div class="spoiler bg-black  position-absolute z-1 rounded-1 " style="height:2%; transition: 0.5s;">
-                <p class="position-relative z-2 user-select-none text-black ">048702640</p>
+                <p class="position-relative z-2 user-select-none text-black ">{{$data->bik}}</p>
             </div>
         </div>
         <div class="" style="width: 80px">
             <h6 class="">ИНН</h6>
             <div class="spoiler bg-black  position-absolute z-1 rounded-1 " style="height:2%; weight:100%; transition: 0.5s;">
-                <p class="position-relative z-2 user-select-none text-black ">1121007605</p>
+                <p class="position-relative z-2 user-select-none text-black ">{{$data->inn}}</p>
             </div>
         </div>
         <div class="" style="width: 72px">
             <h6 class="">КПП</h6>
             <div class="spoiler bg-black  position-absolute z-1 rounded-1 " style="height:2%; weight:100%; transition: 0.5s;">
-                <p class="position-relative z-2 user-select-none text-black ">112101001</p>
+                <p class="position-relative z-2 user-select-none text-black ">{{$data->kpp}}</p>
             </div>
         </div>
         <div class="" style="width: 220px">
             <h6 class="">Банк</h6>
             <div class="spoiler bg-black  position-absolute z-1 rounded-1 " style="height:2%; width:220px; transition: 0.5s;">
-                <p class="position-relative z-2 user-select-none text-black ">Коми ОСБ № 8617 г. Сыктывкар</p>
+                <p class="position-relative z-2 user-select-none text-black ">{{$data->bank}}</p>
             </div>
         </div>
         <div class="" style="width: 170px">
@@ -48,4 +56,4 @@
             </div>
         </div>
     </div>
-</div>
+{{-- </div> --}}
