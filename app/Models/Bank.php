@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bank extends Model
 {
     use HasFactory;
+
+    public $fillable = ['name'];
     public $timestamps = false;
 }

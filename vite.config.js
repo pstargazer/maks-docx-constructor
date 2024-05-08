@@ -3,6 +3,8 @@ import { fileURLToPath, URL } from "url";
 
 import laravel from 'laravel-vite-plugin';
 
+const APP_URL = process.env.APP_URL || "127.0.0.1"
+
 export default defineConfig({
     base: '/',
     plugins: [
@@ -14,6 +16,9 @@ export default defineConfig({
             ],
             
             refresh: true,
+            // env: {
+                // APP_URL: APP_URL,
+            // },
         }),
     ],
     resolve:{
@@ -30,15 +35,16 @@ export default defineConfig({
     },
     server: {
         port: 3000,
+        // host: '0.0.0.0',
+        host: 'localhost',
+        strictPort: true,
         hmr: {
             host: 'localhost',
-            // host: '127.0.0.1',
-            port: 3000,
+            port:3000
         },
         watch: {
             usePolling: true,
             interval: 1000,
-
         }
     }
 });

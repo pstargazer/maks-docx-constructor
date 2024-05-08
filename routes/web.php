@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Contract;
+// use App\Http\Controllers\Contract;
 use Illuminate\Support\Facades\Redirect;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,6 @@ Route::get('/', function () {
     return Redirect::to('/contracts');
 });
 Route::get('/home', function () {
-
     return Redirect::to('/contracts');
 });
 
@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function(){
     // contracts crud
     Route::group([
         'prefix' => 'contracts',
-        'namespace' => 'App\Http\Controllers\Contract',
+        'namespace' => '\App\Http\Controllers\Contract',
         'as' => 'contract.'
     ], function () {
 
@@ -46,16 +46,19 @@ Route::middleware('auth')->group(function(){
     Route::group([
         'prefix' => 'clients',
         'as' => 'client.',
-        "namespace" => 'App\Http\Controllers'
+        "namespace" => '\App\Http\Controllers\Client'
     ], function () {
+        Route::get('/', "IndexController")->name('index');
+        // Route::get('/', [\App\Http\Controllers\Client\IndexController::class,'__invoke'])->name('index');
         Route::controller('ClientController')->group(function (){
             // Route::get('/','index')->name('client.index');
             // Route::view('/', 'client.index');
-            Route::get('/', function(){})->name('index');
-            Route::get('/{id}', 'index')->name('index');
-            Route::view('/add', 'client.create');
-            Route::post('/add', 'store');
-            // Route::get('/add','index')->name('client.create');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::post('/edit/{id}','update')->name('update');
+
+            Route::get('/add', 'create')->name('create');
+            Route::post('/add', 'store')->name('store');
+
         });
     });
 
@@ -63,21 +66,12 @@ Route::middleware('auth')->group(function(){
 
 Route::view('/import', 'import')->name('import');
 Route::post('/import', function () {
-    Artisan::call('');
+    Artisan::call('app:data:import');
 });
 
 
 Route::get('/others', function () {
     return view("others.others");
 });
-Route::group([
-    'prefix' => 'admin',
-    'as' => 'admin.',
-    "namespace" => 'App\Http\Controllers'
-], function(){
-    Route::controller('UserController')->group(function (){
-        Route::get('/', 'index')->name('index');
-        Route::post('/update', 'update')->name('update');
-    });
-});
 
+// Route::view('/indextest', 'layouts.);
