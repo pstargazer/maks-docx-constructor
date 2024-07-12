@@ -33,7 +33,7 @@ export default defineConfig({
         hmr: {
             host: 'localhost',
             // host: '127.0.0.1',
-            port: 3000,
+            // port: 3000,
         },
         watch: {
             usePolling: true,
