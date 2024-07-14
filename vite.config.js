@@ -5,6 +5,8 @@ import laravel from 'laravel-vite-plugin';
 
 const APP_URL = process.env.APP_URL || "127.0.0.1"
 
+const clPort = 3000
+
 export default defineConfig({
     base: '/',
     plugins: [
@@ -14,7 +16,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'node_modules/bootstrap/dist/js/bootstrap.min.js',
             ],
-            
+            port: 3000,
             refresh: true,
             // env: {
                 // APP_URL: APP_URL,
@@ -34,17 +36,21 @@ export default defineConfig({
         ]
     },
     server: {
-        port: 3000,
-        // host: '0.0.0.0',
-        host: 'localhost',
+        host: '0.0.0.0',
+        port: clPort, // port of the server
         strictPort: true,
+        // https: true, // breaks
         hmr: {
+            clientPort: clPort,
+            port: 8000,
             host: 'localhost',
-            port:3000
+            protocol: 'ws'
         },
+        // // hmr: false,
         watch: {
-            usePolling: true,
-            interval: 1000,
+            awaitWriteFinish: true,
+            usePolling: false,
+            interval: 1000
         }
     }
 });

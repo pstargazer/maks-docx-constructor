@@ -52,7 +52,7 @@ spoilers.forEach(spoiler => {
 // }) 
 
 
-form.addEventListener('submit',evt => { 
-   // evt.preventDefault()
-   // alert('sdf')
-})
+// form.addEventListener('submit',evt => { 
+//    // evt.preventDefault()
+//    // alert('sdf')
+// })
