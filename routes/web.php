@@ -37,7 +37,7 @@ Route::middleware("auth")->group(function () {
             // Route::middleware(['auth'])->group(function () {
             Route::get("/", "IndexController")->name("index");
             // Route::view('/add', 'contract.create');
-            Route::get("/add", "contract.create");
+            Route::get("/add", "CreateController");
         }
     );
 

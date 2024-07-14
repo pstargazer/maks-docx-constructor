@@ -20,6 +20,6 @@ class CreateController extends Controller
             $client = Client::find($client_id);
             return view("contract.create", compact("templates", "client"));
         }
-        return view("templates", "contract.create");
+        return view("contract.create", compact("templates"));
     }
 }
