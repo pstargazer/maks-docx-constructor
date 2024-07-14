@@ -42,15 +42,17 @@ export default defineConfig({
         // https: true, // breaks
         hmr: {
             clientPort: clPort,
-            port: 8000,
+            // port: 8000, avoid to prevent eternal polling
             host: 'localhost',
             protocol: 'ws'
         },
-        // // hmr: false,
+        // hmr: false,
         watch: {
             awaitWriteFinish: true,
-            usePolling: false,
-            interval: 1000
+            usePolling: true,
+            interval: 1000,
+            // ignored:
+            persistent: true
         }
     }
 });

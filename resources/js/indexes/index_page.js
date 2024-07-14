@@ -16,17 +16,26 @@ let trashBtns = document.querySelectorAll('.trash_btns');
 
 editBtns.forEach(el => {
     el.addEventListener('click', evt => {
-        let id = evt.target.parentNode.getAttribute("data-id")
-        console.log(id);
-        window.location.href = "/clients/edit/" + id
+        let id = evt.target.closest('[data-id]').getAttribute("data-id")
+        if (id) {
+            console.log(id);
+            window.location.href = "/clients/edit/" + id
+        } else {
+            console.log("No data-id");
+        }
     })
 })
 
 trashBtns.forEach(el => {
     el.addEventListener('click', evt => {
-        let id = evt.target.parentNode.getAttribute("data-id")
-        console.log(id);
-        window.location.href = "/clients/delete/" + id
+        let id = evt.target.closest('[data-id]').getAttribute("data-id")
+
+        if (id) {
+            console.log(id);
+            window.location.href = "/clients/delete/" + id
+        } else {
+            console.log("No data-id");
+        }
     })
 })
 
