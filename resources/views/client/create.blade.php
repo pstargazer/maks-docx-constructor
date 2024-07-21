@@ -8,13 +8,13 @@
 
 @section('content')
     <section class="pt-4">
-        
+
         <form class="row" method="post">
             @csrf
             {{-- @error('*') --}}
             @if($errors->any())
             <div class="alert alert-danger d-flex flex-row" role="alert">
-                <?php 
+                <?php
                 $errors = json_decode($errors);
                 ?>
                 @foreach($errors as $error)

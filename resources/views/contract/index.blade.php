@@ -14,6 +14,7 @@
         </span>
     </div>
 
+    <a type="button" href="{{route('contract.create')}}" class="btn btn-outline-primary">Добавить</a>
     <button type="button" class="btn btn-outline-primary">Распечатать</button>
     <button type="button" class="btn btn-outline-success">Редактировать</button>
     <button type="button" class="btn btn-outline-danger">Удалить</button>
@@ -60,7 +61,7 @@
                             <td></td>
                         </tr>
                     @endforelse
-                    
+
                         {{-- <tr class="">
                             <td>
                                 <input type="checkbox" class="btn-check" id="btncheck1">
@@ -81,7 +82,7 @@
             </div>
             <!-- /.card-body -->
         </div>
-        {{ $contracts->links() }}  
+        {{ $contracts->links() }}
     </div>
     <!-- ./col -->
 </div>

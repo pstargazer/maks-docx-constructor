@@ -2,7 +2,8 @@
 @props(['data',"zoom"])
     <h2 class="py-4">
         Предпросмотр
-        <a href="#" class="btn btn-outline-primary">Новый договор</a>
+
+        <a href="{{ route('contract.create', [ 'client_id' => $_GET['record_id']]) }}" class="btn btn-outline-primary">Новый договор</a>
     </h2>
     <hr class="mb-0">
     <p class="mb-0">{{$data->name_prefix}} {{$data->company_name}}</p>

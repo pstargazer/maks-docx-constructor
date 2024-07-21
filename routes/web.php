@@ -25,6 +25,10 @@ Route::get("/home", function () {
     return Redirect::to("/contracts");
 });
 
+Route::post(
+    "/contracts/add",
+    "\App\Http\Controllers\Contract\GenerateController"
+);
 Route::middleware("auth")->group(function () {
     // contracts crud
     Route::group(
@@ -37,7 +41,7 @@ Route::middleware("auth")->group(function () {
             // Route::middleware(['auth'])->group(function () {
             Route::get("/", "IndexController")->name("index");
             // Route::view('/add', 'contract.create');
-            Route::get("/add", "CreateController");
+            Route::get("/add", "CreateController")->name("create");
         }
     );
 
