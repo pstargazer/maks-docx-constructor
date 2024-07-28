@@ -14,10 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
 });
 
-Route::get('/template/docx/{id}', function (){
-    // return 
+Route::get("/template/docx/{id}", function () {
+    // return
 });
+
+Route::group(
+    [
+        "prefix" => "clients",
+        "namespace" => "\App\Http\Controllers\Client",
+        "as" => "client.api.",
+    ],
+    function () {
+        Route::get("/", "IndexApiController")->name("index");
+    }
+);

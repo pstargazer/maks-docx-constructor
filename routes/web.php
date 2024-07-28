@@ -19,16 +19,16 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get("/", function () {
-    return Redirect::to("/contracts");
+    return Redirect::to("/clients");
 });
 Route::get("/home", function () {
-    return Redirect::to("/contracts");
+    return Redirect::to("/clients");
 });
 
-Route::post(
-    "/contracts/add",
-    "\App\Http\Controllers\Contract\GenerateController"
-);
+// Route::post(
+//     "/contracts/add",
+//     "\App\Http\Controllers\Contract\GenerateController"
+// );
 Route::middleware("auth")->group(function () {
     // contracts crud
     Route::group(
@@ -42,6 +42,7 @@ Route::middleware("auth")->group(function () {
             Route::get("/", "IndexController")->name("index");
             // Route::view('/add', 'contract.create');
             Route::get("/add", "CreateController")->name("create");
+            // Route::post("/add", "StoreController")->name("store");
         }
     );
 

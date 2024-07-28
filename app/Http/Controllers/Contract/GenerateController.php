@@ -13,6 +13,6 @@ class GenerateController extends BaseController
     public function __invoke(Request $request)
     {
         //
-        $this->service->generateDOCX("test.docx", []);
+        $this->service->generateDOCX(1, 3, []);
     }
 }
