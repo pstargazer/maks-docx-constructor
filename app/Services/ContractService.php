@@ -1,6 +1,5 @@
 <?php
 
-// namespace App\Http\Controllers\Contract;
 namespace App\Services;
 
 use Illuminate\Support\Facades\File;
@@ -14,9 +13,6 @@ use App\Models\Client;
 
 class ContractService
 {
-    protected $tbs; //tinybutstrong object
-    protected $contractinfo, $templateinfo;
-
     public function __construct()
     {
         $this->tbs = new clsTinyButStrong([
@@ -27,21 +23,42 @@ class ContractService
         $this->tbs->Plugin(TBS_INSTALL, "clsOpenTBS");
     }
 
-    private function getContractInfo()
+    protected $tbs; //tinybutstrong object
+    protected $contractinfo, $templateinfo;
+
+    /**
+     * @return void
+     */
+    private function getContractInfo(): void
+    {
+    }
+    /**
+     * @return void
+     */
+    private function getTemplateInfo(): void
+    {
+    }
+    /**
+     * @return void
+     */
+    public function store(): void
     {
     }
 
-    private function getTemplateInfo()
-    {
-    }
-
-    public function store()
-    {
-    }
-
-    // Entrypoint of creating docx
-    public function generateDOCX($templateId, $clientId, $data)
-    {
+    /*
+     * Entrypoint of creating docx
+     * @param int $templateId
+     * @param int $clientId
+     * @param array $data
+     *
+     * @return path of newly stored document string|null
+     *
+     */
+    public function generateDOCX(
+        int $templateId,
+        int $clientId,
+        array $data
+    ): ?string {
         $template_name = "postavka_software.docx";
         $this->tbs->LoadTemplate(
             storage_path("app/public/templates/" . $template_name),

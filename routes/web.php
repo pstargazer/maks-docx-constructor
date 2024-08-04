@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\Contract;
 use Illuminate\Support\Facades\Redirect;
 
 /*
@@ -42,7 +42,7 @@ Route::middleware("auth")->group(function () {
             Route::get("/", "IndexController")->name("index");
             // Route::view('/add', 'contract.create');
             Route::get("/add", "CreateController")->name("create");
-            // Route::post("/add", "StoreController")->name("store");
+            Route::post("/add", "GenerateController")->name("store");
         }
     );
 
@@ -70,9 +70,9 @@ Route::middleware("auth")->group(function () {
 });
 
 Route::view("/import", "import")->name("import");
-Route::post("/import", function () {
-    Artisan::call("app:data:import");
-});
+// Route::post("/import", function () {
+//     Artisan::call("app:data:import");
+// });
 
 Route::get("/others", function () {
     return view("others.others");

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers\Client\Api;
 
 use App\Http\Controllers\Client\BaseController;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
-class IndexApiController extends BaseController
+class IndexController extends BaseController
 {
     /**
      * Handle the incoming request.

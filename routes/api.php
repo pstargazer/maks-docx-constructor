@@ -18,17 +18,26 @@ Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
 });
 
-Route::get("/template/docx/{id}", function () {
-    // return
-});
-
 Route::group(
     [
         "prefix" => "clients",
-        "namespace" => "\App\Http\Controllers\Client",
+        "namespace" => "\App\Http\Controllers\Client\Api",
         "as" => "client.api.",
     ],
     function () {
-        Route::get("/", "IndexApiController")->name("index");
+        Route::get("/all", "IndexController")->name("index");
+        Route::get("/search={search}", "SearchController")->name("search");
+    }
+);
+
+Route::group(
+    [
+        "prefix" => "templates",
+        "namespace" => "\App\Http\Controllers\Template\Api",
+        "as" => "template.api.",
+    ],
+    function () {
+        Route::get("/all", "IndexController")->name("index");
+        Route::get("/search={search}", "SearchController")->name("search");
     }
 );
