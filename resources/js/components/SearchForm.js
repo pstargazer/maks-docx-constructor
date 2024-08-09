@@ -3,10 +3,6 @@
 
 // alert();
 window.onload = async () => {
-    // let clients = await getClients(false);
-    // let clientsJson = await clients.json();
-    // console.log(clientsJson);
-    // dispLines(clientsJson);
     const clientform = new SearchForm("clients");
     const templateform = new SearchForm("templates");
 };
@@ -16,6 +12,7 @@ class SearchForm {
     // recordCounterEl
     constructor(id_prefix) {
         this.subject = id_prefix;
+        // define component parts
         this.searchEl = document.querySelector("#" + id_prefix + "-search");
         this.recordsEl = document.querySelector("#" + id_prefix + "-records");
         this.counterEl = document.querySelector("#" + id_prefix + "-counter");
@@ -36,15 +33,15 @@ class SearchForm {
 
     // gets the data and rerenders
     async renderAll() {
-        let clients = await this.getRecords(this.searchEl.value);
-        let clientsJson = await clients.json();
+        let records = await this.getRecords(this.searchEl.value);
+        let recordsJson = await records.json();
 
-        this.page = clientsJson.current_page;
-        this.last_page = clientsJson.last_page;
+        this.page = recordsJson.current_page;
+        this.last_page = recordsJson.last_page;
 
-        this.setCounter(clientsJson);
-        this.dispLines(clientsJson);
-        console.log(clientsJson);
+        this.setCounter(recordsJson);
+        this.dispLines(recordsJson);
+        console.log(recordsJson);
         this.setDisabled();
     }
 
@@ -104,6 +101,9 @@ class SearchForm {
         });
     }
 
+    /*
+    switch to prev page
+    */
     decrPage() {
         if (this.page != 1) {
             this.page = --this.page;
@@ -111,6 +111,9 @@ class SearchForm {
         }
     }
 
+    /*
+    switch to next page
+    */
     incPage() {
         if (this.page != this.last_page) {
             this.page = ++this.page;
@@ -161,24 +164,38 @@ class SearchForm {
     // render single line
     makeLine(data) {
         // console.log(data);
+        if (this.subject === "client") {
+            let delegate_name_short = `${data.delegate_surname}.${data.delegate_name[0]}.${data.delegate_th_name[0]}`;
 
-        let delegate_name_short = `${data.delegate_surname}.${data.delegate_name[0]}.${data.delegate_th_name[0]}`;
-
+            const card = `
+                <tr class="record">
+                    <td class="table_crop_s table_overflow">
+                        <input type="radio" name="${this.subject}_id" id="${this.subject}-radio-${data.id}" value="${data.id}" >
+                    </td>
+                    <td>
+                        <label class="table_crop_s table_overflow"  title="${data.company_name}"
+                        for="${this.subject}-radio-${data.id}">${data.company_name}</label>
+                    </td>
+                    <td>
+                        <label class="table_crop_s table_overflow" title="${delegate_name_short}" for="${this.subject}-radio-${data.id}">${delegate_name_short}</label>
+                    </td>
+                </tr>
+            `;
+        }
         const card = `
             <tr class="record">
                 <td class="table_crop_s table_overflow">
-                    <input type="radio" name="client_id" id="record-radio-${data.id}" value="${data.id}" >
+                    <input type="radio" name="${this.subject}_id" id="${this.subject}-radio-${data.id}" value="${data.id}" >
                 </td>
                 <td>
                     <label class="table_crop_s table_overflow"  title="${data.company_name}"
-                    for="record-radio-${data.id}">${data.company_name}</label>
+                    for="${this.subject}-radio-${data.id}">${data.company_name}</label>
                 </td>
                 <td>
-                    <label class="table_crop_s table_overflow" title="${delegate_name_short}" for="record-radio-${data.id}">${delegate_name_short}</label>
+                    <label class="table_crop_s table_overflow" title="${delegate_name_short}" for="${this.subject}-radio-${data.id}">${delegate_name_short}</label>
                 </td>
             </tr>
-        `;
-
+            `;
         return card;
     }
     /*
@@ -190,7 +207,7 @@ class SearchForm {
         this.replaceText(this.counterEl, content);
     }
 
-    // display the lines of
+    // display the lines of subject records
     dispLines(linesData) {
         // console.log(cardsData["data"]);
         // this.recordsEl.value = "";
@@ -201,10 +218,28 @@ class SearchForm {
             this.appendText(this.recordsEl, errMsg);
             return;
         }
+
         linesData["data"].forEach((curr) => {
-            // console.log(curr);
-            let linePlace = document.querySelector("#records");
             this.appendText(this.recordsEl, this.makeLine(curr));
         });
+        if (linesData["data"].length < this.perpage) {
+            // let remainderLines = this.perpage - linesData["data"];
+            let remainderLines = this.perpage - linesData["data"].length;
+            for (let i = 0; i < remainderLines; i++) {
+                this.appendText(
+                    this.recordsEl,
+                    `
+                    <tr class="record">
+                    <td>
+                        <input type="radio" disabled>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    </tr>
+                    `,
+                );
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.no-container')
 @section('content')
-@vite(['resources/js/contract/create.js'])
+@vite(['resources/js/components/SearchForm.js'])
 
 
 <!-- <div class="d-grid"> -->

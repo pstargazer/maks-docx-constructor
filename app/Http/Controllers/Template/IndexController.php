@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Template;
 
 use App\Http\Controllers\Template\BaseController;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CreateController extends BaseController
+class IndexController extends BaseController
 {
     /**
      * Handle the incoming request.
@@ -13,6 +14,7 @@ class CreateController extends BaseController
     public function __invoke(Request $request)
     {
         //
-        return view("template.create");
+        $templates = $this->service->index(10);
+        return view("template.index", compact("templates"));
     }
 }

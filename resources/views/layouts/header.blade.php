@@ -7,7 +7,7 @@
             <ul class="nav col-12 col-lg-auto  mb-2  mb-md-0">
                 <li><a href="{{route('client.index')}}" class="nav-link px-2 text-white">Клиенты</a></li>
                 <li><a href="{{route('contract.index')}}" class="nav-link px-2 text-white">Договоры</a></li>
-                <!-- <li><a href="{{route('import')}}" class="nav-link px-2 text-white">Импорт</a></li> -->
+                <li><a href="{{route('template.index')}}" class="nav-link px-2 text-white">Шаблоны</a></li>
                 @auth
                 <li>
                     <form action="{{route('logout')}}" method="post">

@@ -67,15 +67,29 @@ Route::middleware("auth")->group(function () {
             });
         }
     );
+
+    Route::group(
+        [
+            "prefix" => "templates",
+            "as" => "template.",
+            "namespace" => "\App\Http\Controllers\Template",
+        ],
+        function () {
+            Route::get("/", "IndexController")->name("index");
+
+            Route::get("/create", "CreateController")->name("create");
+            Route::post("/create", "StoreController")->name("store");
+        }
+    );
 });
 
-Route::view("/import", "import")->name("import");
+// Route::view("/import", "import")->name("import");
 // Route::post("/import", function () {
 //     Artisan::call("app:data:import");
 // });
 
-Route::get("/others", function () {
-    return view("others.others");
-});
+// Route::get("/others", function () {
+//     return view("others.others");
+// });
 
 // Route::view('/indextest', 'layouts.);
