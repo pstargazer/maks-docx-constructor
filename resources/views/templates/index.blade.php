@@ -61,8 +61,10 @@
                 </tr>
             @endforelse
             </tbody>
+            <tfoot>
+                {{ $templates->onEachSide(5)->links('pagination::bootstrap-5') }}
+            </tfoot>
         </table>
-        {{ $templates->links('pagination::bootstrap-5') }}
     </div>
 </div>
 @endsection

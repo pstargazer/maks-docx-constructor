@@ -35,21 +35,31 @@
 
 /* table { */
 .table_overflow {
+    label {
+        // чтобы было удобнее выбирать пункт
+        width: 100%;
+    }
     text-overflow: ellipsis;
 
     /* required for  text-overflow*/
     white-space: nowrap;
     overflow-x: hidden;
 }
+
 // for small <td>
 .table_crop_s {
+    @extend .table_overflow;
+
     max-width: 15em;
-    width: 15em;
+    min-width: 15em;
 }
+
 // for medium-sized <td>
 .table_crop_m {
+    @extend .table_overflow;
+
     max-width: 25em;
-    width: 25em;
+    min-width: 25em;
 }
 
 table {

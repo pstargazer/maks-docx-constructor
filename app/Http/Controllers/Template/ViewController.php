@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Template;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Template\BaseController as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-// use ;
 
-class GetController extends Controller
+class ViewController extends BaseController
 {
     /**
      * Handle the incoming request.
      */
-    // public function __invoke(Request $request)
-    // {
     public function __invoke($filename)
     {
-        // return('test');
         $final_path = "/templates/" . $filename;
         return Storage::disk("templates")->download($final_path);
+        // return storage_path($final_path);
+        // response->json([
+        //     value => $content,
+        //     message => "hui",
+        // ]);
     }
 }

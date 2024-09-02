@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Template;
 
 use App\Http\Controllers\Template\BaseController;
 use App\Http\Controllers\Controller;
+use App\Models\Template;
 use Illuminate\Http\Request;
 
 class IndexController extends BaseController
@@ -15,6 +16,7 @@ class IndexController extends BaseController
     {
         //
         $templates = $this->service->index(10);
-        return view("template.index", compact("templates"));
+        // $templates = Template::paginate(10);
+        return view("templates.index", compact("templates"));
     }
 }

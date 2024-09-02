@@ -2,6 +2,8 @@
     "subject" => "model"
 ])
 
+
+
 <div class="search-form overflow-x-hidden {{ $subject }}-search-form">
     <span class="input-group mb-2">
         <!-- search here -->
@@ -11,16 +13,11 @@
             id="{{ $subject }}-search"
             placeholder="Поиск"
         />
-        <!-- <button type="button" class="btn btn-primary" id="{{ $subject }}-search">
-            Искать
-        </button> -->
     </span>
-    <table class="table">
+    <table class="table w-full">
         <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Имя</th>
-              <th scope="col">Представитель</th>
+            <tr id="{{ $subject }}-thead">
+                <!-- table header -->
             </tr>
         </thead>
         <tbody id="{{ $subject }}-records">

@@ -1,21 +1,20 @@
-// const perpage = 5;
-// let currpage = 1;
-
-// alert();
-window.onload = async () => {
-    const clientform = new SearchForm("clients");
-    const templateform = new SearchForm("templates");
-};
-
-class SearchForm {
-    // let recordsEl
-    // recordCounterEl
-    constructor(id_prefix) {
+export class SearchForm {
+    /**
+     *
+     * @param {*} id_prefix
+     * префикс,вставляемый в id элементов компонента
+     * @param {*} fields
+     * массив объектов для формирования таблицы и заголовков
+     */
+    constructor(id_prefix, fields, lineData) {
+        this.fields = fields;
         this.subject = id_prefix;
+        this.lineData = lineData; // имя поля, как в fields, которое будет показываться в data-аттрибуте строки таблицы
         // define component parts
         this.searchEl = document.querySelector("#" + id_prefix + "-search");
         this.recordsEl = document.querySelector("#" + id_prefix + "-records");
         this.counterEl = document.querySelector("#" + id_prefix + "-counter");
+        this.headerEl = document.querySelector("#" + id_prefix + "-thead");
 
         this.paginationPrevEl = document.querySelector(
             "." + id_prefix + "-pagination-prev",
@@ -39,9 +38,9 @@ class SearchForm {
         this.page = recordsJson.current_page;
         this.last_page = recordsJson.last_page;
 
+        this.makeHeader();
         this.setCounter(recordsJson);
         this.dispLines(recordsJson);
-        console.log(recordsJson);
         this.setDisabled();
     }
 
@@ -86,6 +85,7 @@ class SearchForm {
 
     listenAll() {
         this.searchEl.addEventListener("input", () => {
+            this.page = 1;
             this.renderAll();
         });
 
@@ -161,55 +161,70 @@ class SearchForm {
         el.innerHTML = content;
     }
 
-    // render single line
-    makeLine(data) {
-        // console.log(data);
-        if (this.subject === "client") {
-            let delegate_name_short = `${data.delegate_surname}.${data.delegate_name[0]}.${data.delegate_th_name[0]}`;
+    // render the table header
+    makeHeader() {
+        let header = this.fields.reduce((prev, curr) => {
+            let content = `<th scope="col">${curr.name}</th>`;
+            return prev + content;
+        }, "");
+        header = '<th scope="col"></th>' + header;
+        this.replaceText(this.headerEl, header);
+    }
 
-            const card = `
-                <tr class="record">
-                    <td class="table_crop_s table_overflow">
-                        <input type="radio" name="${this.subject}_id" id="${this.subject}-radio-${data.id}" value="${data.id}" >
-                    </td>
-                    <td>
-                        <label class="table_crop_s table_overflow"  title="${data.company_name}"
-                        for="${this.subject}-radio-${data.id}">${data.company_name}</label>
-                    </td>
-                    <td>
-                        <label class="table_crop_s table_overflow" title="${delegate_name_short}" for="${this.subject}-radio-${data.id}">${delegate_name_short}</label>
-                    </td>
-                </tr>
-            `;
+    // сформировать строку формы
+    makeLine(data) {
+        // alert()
+        let neededIdx = 0;
+        if (this.lineData) {
+            // найти индекс поля с нужным именем
+            neededIdx = this.fields.findIndex(
+                (value) => value.int_name == this.lineData,
+            );
         }
-        const card = `
-            <tr class="record">
-                <td class="table_crop_s table_overflow">
-                    <input type="radio" name="${this.subject}_id" id="${this.subject}-radio-${data.id}" value="${data.id}" >
-                </td>
-                <td>
-                    <label class="table_crop_s table_overflow"  title="${data.company_name}"
-                    for="${this.subject}-radio-${data.id}">${data.company_name}</label>
-                </td>
-                <td>
-                    <label class="table_crop_s table_overflow" title="${delegate_name_short}" for="${this.subject}-radio-${data.id}">${delegate_name_short}</label>
-                </td>
-            </tr>
-            `;
+
+        let card = `<tr class="${this.subject}-record record" data-${this.lineData}="${data[this.lineData]}">`;
+        // добавить радиокнопку в начало
+        card += `<td><input type="radio" class="form-row" name="${this.subject}-radio" id="${this.subject}-radio-${data.id}"></td>`;
+        this.fields.forEach((el, idx) => {
+            let cellvalue = this.makeCell(data, idx);
+            card += `<td class="table_crop_s" >  <label for="${this.subject}-radio-${data.id}" title="${cellvalue}"> ${cellvalue} </label> </td>`;
+        });
+        card += "</tr>";
         return card;
     }
+
+    /* сформировать содержимое клеточки
+     *  @param idx - текущий индекс в объекте с полями
+     *  @param data - данные запроса
+     */
+    makeCell(data, idx) {
+        // let str = data[idx]["int_name"]; // текущий элемент с значением
+        let str = this.fields[idx];
+        if (str === undefined) return; // костыль чтобы работало без this.dataField
+        if (typeof str["int_name"] === "object") {
+            //если несколько полей в одной ячейке
+            let arr = Array.from(this.fields[idx].int_name);
+            let row = arr
+                .values()
+                .reduce(
+                    (accumulator, curr) => accumulator + " " + data[curr],
+                    "",
+                );
+            return row;
+        } // если в ячейке только одно поле
+        else return data[this.fields[idx]["int_name"]];
+    }
+
     /*
-     // set pages counters
+        set pages counters
     */
     setCounter(data) {
-        // console.log(data)
         let content = `Страница ${this.page} из ${this.last_page}`;
         this.replaceText(this.counterEl, content);
     }
 
     // display the lines of subject records
     dispLines(linesData) {
-        // console.log(cardsData["data"]);
         // this.recordsEl.value = "";
         this.replaceText(this.recordsEl, "");
         if (linesData.data.length == 0) {

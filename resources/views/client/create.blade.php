@@ -14,9 +14,7 @@
             {{-- @error('*') --}}
             @if($errors->any())
             <div class="alert alert-danger d-flex flex-row" role="alert">
-                <?php
-                $errors = json_decode($errors);
-                ?>
+                <?php $errors = json_decode($errors); ?>
                 @foreach($errors as $error)
                     {{-- {{$error}} --}}
                     @foreach($error as $i)
@@ -86,5 +84,5 @@
 
 
 @push('page-scripts')
-@vite(['resources/js/create_form.js'])
+@vite(['resources/js/client/create.js'])
 @endpush

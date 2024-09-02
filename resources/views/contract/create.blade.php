@@ -1,6 +1,6 @@
 @extends('layouts.no-container')
 @section('content')
-@vite(['resources/js/components/SearchForm.js'])
+@vite(['resources/js/contract/create.js'])
 
 
 <!-- <div class="d-grid"> -->
@@ -92,18 +92,7 @@
                     class="accordion-collapse collapse"
                 >
                     <div class="accordion-body">
-                        <strong
-                            >This is the third item's accordion body.</strong
-                        >
-                        It is hidden by default, until the collapse plugin adds
-                        the appropriate classes that we use to style each
-                        element. These classes control the overall appearance,
-                        as well as the showing and hiding via CSS transitions.
-                        You can modify any of this with custom CSS or overriding
-                        our default variables. It's also worth noting that just
-                        about any HTML can go within the
-                        <code>.accordion-body</code>, though the transition does
-                        limit overflow.
+                        <x-pair-input subject="contract-values" />
                     </div>
                 </div>
             </div>
@@ -114,6 +103,7 @@
     <!-- <div class="flex-grow-1 px-3 py-2 col-sm-6 col-md-8 bg-secondary"> -->
     <div class="px-3 py-2 bg-secondary overflow-y-auto">
         <h2 class="py-3">Предпросмотр</h2>
+        <x-doc-preview subject="templates" />
     </div>
     <!-- preview end -->
 </div>

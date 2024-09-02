@@ -25,10 +25,6 @@ Route::get("/home", function () {
     return Redirect::to("/clients");
 });
 
-// Route::post(
-//     "/contracts/add",
-//     "\App\Http\Controllers\Contract\GenerateController"
-// );
 Route::middleware("auth")->group(function () {
     // contracts crud
     Route::group(
@@ -68,6 +64,7 @@ Route::middleware("auth")->group(function () {
         }
     );
 
+    // templates
     Route::group(
         [
             "prefix" => "templates",
@@ -77,19 +74,13 @@ Route::middleware("auth")->group(function () {
         function () {
             Route::get("/", "IndexController")->name("index");
 
+            Route::get("/viewsrc={filename}", "GetController")->name(
+                "view-src"
+            );
+            Route::get("/view={filename}", "ViewController")->name("view");
+
             Route::get("/create", "CreateController")->name("create");
             Route::post("/create", "StoreController")->name("store");
         }
     );
 });
-
-// Route::view("/import", "import")->name("import");
-// Route::post("/import", function () {
-//     Artisan::call("app:data:import");
-// });
-
-// Route::get("/others", function () {
-//     return view("others.others");
-// });
-
-// Route::view('/indextest', 'layouts.);

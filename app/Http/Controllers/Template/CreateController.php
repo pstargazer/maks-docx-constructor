@@ -13,6 +13,6 @@ class CreateController extends BaseController
     public function __invoke(Request $request)
     {
         //
-        return view("template.create");
+        return view("templates.create");
     }
 }
