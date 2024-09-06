@@ -25,7 +25,7 @@ window.onload = async () => {
                 ],
             },
         ],
-        "company_name",
+        "id",
     );
     // форма шаблонов
     const templateform = new SearchForm(
@@ -38,9 +38,9 @@ window.onload = async () => {
                 // data: true,
             },
         ],
-        "filename",
+        "id",
     );
 
-    const preview = new DocPreview("templates");
+    const preview = new DocPreview("contracts");
     preview.setListeners(templateform);
 };

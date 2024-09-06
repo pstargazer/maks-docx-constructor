@@ -24,6 +24,7 @@
         "mammoth": "^1.8.0",
         "module-alias": "^2.2.3",
         "sass": "~1.64.2",
-        "sass-loader": "^14.1.1"
+        "sass-loader": "^14.1.1",
+        "sweetalert2": "^11.12.4"
     }
 }

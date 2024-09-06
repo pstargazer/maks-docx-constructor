@@ -16,6 +16,7 @@ class TemplateService
     }
 
     /**
+     * сохранить файл и вернуть его имя
      * @return string
      */
     public function storeFile($file, $name = "")
@@ -30,7 +31,8 @@ class TemplateService
             $file->getClientOriginalExtension();
         $storePath = "public/templates";
         $file->storeAs($storePath, $filename);
-        return $storePath . "/" . $filename;
+        // return $storePath . "/" . $filename;
+        return $filename;
     }
 
     /**

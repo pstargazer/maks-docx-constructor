@@ -12,7 +12,14 @@ class GenerateController extends BaseController
      */
     public function __invoke(Request $request)
     {
+        // dd($request->client_id);
+        // dd($request["client_id"]);
+        // return $request;
         //
-        $this->service->generateDOCX(1, 3, []);
+        return $this->service->generateDOCX(
+            $request->template_id,
+            $request->client_id,
+            []
+        );
     }
 }

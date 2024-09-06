@@ -10,6 +10,7 @@ export class SearchForm {
         this.fields = fields;
         this.subject = id_prefix;
         this.lineData = lineData; // имя поля, как в fields, которое будет показываться в data-аттрибуте строки таблицы
+
         // define component parts
         this.searchEl = document.querySelector("#" + id_prefix + "-search");
         this.recordsEl = document.querySelector("#" + id_prefix + "-records");

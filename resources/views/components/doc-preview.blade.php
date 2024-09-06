@@ -17,8 +17,9 @@
 
 .document-preview {
     /* margin auto; */
+    overflow-y:scroll
 }
 </style>
 
-<div class="document-preview a4-vertical" id="document-{{$subject}}-preview">
+<div hidden class="document-preview a4-vertical" id="document-{{$subject}}-preview">
 </div>

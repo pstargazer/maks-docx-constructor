@@ -39,6 +39,7 @@ Route::middleware("auth")->group(function () {
             // Route::view('/add', 'contract.create');
             Route::get("/add", "CreateController")->name("create");
             Route::post("/add", "GenerateController")->name("store");
+            Route::post("/generate", "GenerateController")->name("generate");
         }
     );
 
@@ -74,10 +75,10 @@ Route::middleware("auth")->group(function () {
         function () {
             Route::get("/", "IndexController")->name("index");
 
-            Route::get("/viewsrc={filename}", "GetController")->name(
-                "view-src"
-            );
-            Route::get("/view={filename}", "ViewController")->name("view");
+            // view
+            Route::get("/view", "ViewController")->name("view");
+            // api
+            Route::post("/viewsrc", "GetController")->name("view-src");
 
             Route::get("/create", "CreateController")->name("create");
             Route::post("/create", "StoreController")->name("store");

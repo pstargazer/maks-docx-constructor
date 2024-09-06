@@ -103,7 +103,7 @@
     <!-- <div class="flex-grow-1 px-3 py-2 col-sm-6 col-md-8 bg-secondary"> -->
     <div class="px-3 py-2 bg-secondary overflow-y-auto">
         <h2 class="py-3">Предпросмотр</h2>
-        <x-doc-preview subject="templates" />
+        <x-doc-preview subject="contracts" />
     </div>
     <!-- preview end -->
 </div>

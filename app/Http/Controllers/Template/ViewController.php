@@ -15,10 +15,5 @@ class ViewController extends BaseController
     {
         $final_path = "/templates/" . $filename;
         return Storage::disk("templates")->download($final_path);
-        // return storage_path($final_path);
-        // response->json([
-        //     value => $content,
-        //     message => "hui",
-        // ]);
     }
 }

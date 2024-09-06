@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\File;
+// use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 use clsTinyButStrong;
-use OpenTBS\tbs_plugin_opentbs;
+// use OpenTBS\tbs_plugin_opentbs;
 
 use App\Models\Contract;
 use App\Models\Client;
@@ -54,11 +54,8 @@ class ContractService
      * @return path of newly stored document string|null
      *
      */
-    public function generateDOCX(
-        int $templateId,
-        int $clientId,
-        array $data
-    ): ?string {
+    public function generateDOCX(int $templateId, int $clientId, array $data)
+    {
         $template_name = "postavka_software.docx";
         $this->tbs->LoadTemplate(
             storage_path("app/public/templates/" . $template_name),
@@ -70,9 +67,8 @@ class ContractService
             "date" => date("d.m.Y"),
         ];
         $clientdata_tmp = Client::find($clientId)->toArray();
-        // $clientdata_tmp = array_map(function ($curr) {
 
-        // },$clientdata);
+        $storedPath = "generated_" . time() . ".docx";
 
         $clientdata = $this->tbs->MergeBlock("client,contract ", "array", [
             "contract" => $contractdata_tmp,
@@ -83,15 +79,25 @@ class ContractService
             "app/public/generated_doc/" . time() . ".docx"
         );
         // do not show output file
-        $data = $this->tbs->Show(OPENTBS_DOWNLOAD, time() . ".docx");
+        // $data = $this->tbs->Show(OPENTBS_DOWNLOAD, time() . ".docx");
+        // $data = $this->tbs->Source;
+        // return $data;
         // store to storage
-        $stored = Storage::disk("public")->put(
-            "generated_doc/" . time() . ".docx",
+        //
+        $this->tbs->Show(OPENTBS_STRING);
+        $string = $this->tbs->Source;
+
+        $stored = Storage::disk("generated")->put(
+            $storedPath,
             $this->tbs->Source
         );
+        // dd($stored);
 
         if ($stored) {
-            return $outputPath;
+            $storedContent = Storage::download(
+                "public/generated_doc/" . $storedPath
+            );
+            return $storedContent;
         } else {
             return null;
         }
