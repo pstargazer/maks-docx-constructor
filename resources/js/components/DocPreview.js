@@ -15,28 +15,34 @@ export class DocPreview {
     /*
         отрендерить компонент
     */
-    async render() {
-        this.clearDocument();
-        let renderedContent = "";
-        try {
-            console.log(this.fileUrl);
-            let documentBlob = await this.get(this.fileUrl);
-            let result = await mammoth.convertToHtml({
-                arrayBuffer: documentBlob,
-            });
-            console.log(result);
-            renderedContent = result.value;
-        } catch (err) {
-            Swal.fire({
-                title: "Ошибка!",
-                text: "Такой файл не существует или его формат не поддерживается",
-                icon: "error",
-                confirmButtonText: "Продолжить",
-            });
-            console.error(err);
-            return;
+    async render(filename,client_id) {
+        alert()
+        this.setDocUrl(`/${this.subject}/generate?template_id=${filename}&client_id=${client_id}`)
+        if(filename && client_id) {
+        // if(true) {
+            this.clearDocument();
+            let renderedContent = "";
+            try {
+                console.log(this.fileUrl);
+                let documentBlob = await this.get(this.fileUrl);
+                let result = await mammoth.convertToHtml({
+                    arrayBuffer: documentBlob,
+                });
+                console.log(result);
+                renderedContent = result.value;
+            } catch (err) {
+                Swal.fire({
+                    title: "Ошибка!",
+                    text: err.message,
+                    icon: "error",
+                    confirmButtonText: "Продолжить",
+                });
+                console.error(err);
+                return;
+            }
+            this.displayDocument(renderedContent);
         }
-        this.displayDocument(renderedContent);
+
     }
 
     /*
@@ -47,7 +53,7 @@ export class DocPreview {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Accept: "application/json",
+                "Accept": "application/json",
                 "X-Requested-With": "XMLHttpRequest",
                 "X-CSRF-Token": document.querySelector('input[name="_token"]')
                     .value,
@@ -64,7 +70,7 @@ export class DocPreview {
         @param name
         присвоить имя файла
     */
-    setDocUrl(name) {
+    setDocUrl(name, client_id) {
         // this.filename = name;
         // this.fileUrl = `/${this.id_prefix}/view=${name}`;
         this.fileUrl = `/${this.id_prefix}/generate`;
@@ -76,18 +82,30 @@ export class DocPreview {
         должно быть вызвано после конструктора вне класса
         @param SearchForm contract_form
     */
-    setListeners(watched_form) {
-        let recordsId = "#" + watched_form.subject + "-records";
-        let tbody = document.querySelector(recordsId);
+    setListeners(watched_client, watched_template) {
+        // let recordsId = "#" + watched_client.subject + "-records";
+        let tbody_client = document.querySelector(`#${watched_client.subject}-records`);
+        let tbody_template = document.querySelector(`#${watched_template.subject}-records`);
+
+        
         // console.log(tbody);
-        tbody.addEventListener("input", (event) => {
-            let filename =
-                event.target.parentElement.parentElement.getAttribute(
-                    "data-filename",
-                );
-            this.setDocUrl(filename);
-            this.render();
+        tbody_client.addEventListener("input", async (event) => {
+            let client_id = event.target.parentElement.parentElement.getAttribute('data-id');
+            this.client_id = client_id
+            console.log(this.client_id);
+            
+            if(this.template_id && this.client_id) await this.render(this.template_id, this.client_id)
         });
+
+        tbody_template.addEventListener("input", async (event) => {
+            let template_name = event.target.parentElement.parentElement.getAttribute('data-id');
+            this.template_id = template_name
+            // this.template_name
+            console.log(this.template_id);
+            console.log(this.client_id);
+
+            if(this.template_id && this.client_id) await this.render(this.template_id, this.client_id)
+        })
     }
 
     /*

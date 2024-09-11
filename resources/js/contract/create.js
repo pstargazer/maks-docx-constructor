@@ -6,6 +6,10 @@ import { SearchForm } from "../components/SearchForm";
 import { PairForm } from "../components/PairForm";
 import { DocPreview } from "../components/DocPreview";
 
+function setListeners() {
+
+}
+
 // alert();
 window.onload = async () => {
     // форма для клиентов
@@ -42,5 +46,5 @@ window.onload = async () => {
     );
 
     const preview = new DocPreview("contracts");
-    preview.setListeners(templateform);
+    preview.setListeners(clientform, templateform);
 };

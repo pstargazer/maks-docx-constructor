@@ -70,7 +70,7 @@ class ContractService
 
         $storedPath = "generated_" . time() . ".docx";
 
-        $clientdata = $this->tbs->MergeBlock("client,contract ", "array", [
+        $clientdata = $this->tbs->MergeBlock("client,contract", "array", [
             "contract" => $contractdata_tmp,
             "client" => $clientdata_tmp,
         ]);
