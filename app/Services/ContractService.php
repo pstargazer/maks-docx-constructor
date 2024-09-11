@@ -10,6 +10,7 @@ use clsTinyButStrong;
 
 use App\Models\Contract;
 use App\Models\Client;
+use App\Models\Template;
 
 class ContractService
 {
@@ -56,7 +57,9 @@ class ContractService
      */
     public function generateDOCX(int $templateId, int $clientId, array $data)
     {
-        $template_name = "postavka_software.docx";
+        // $template_name = "postavka_software.docx";
+        $template_name = Template::find($templateId)->filename;
+        // dd($templateId);
         $this->tbs->LoadTemplate(
             storage_path("app/public/templates/" . $template_name),
             OPENTBS_ALREADY_UTF8
@@ -67,12 +70,16 @@ class ContractService
             "date" => date("d.m.Y"),
         ];
         $clientdata_tmp = Client::find($clientId)->toArray();
+        // dd($clientdata_tmp);
 
         $storedPath = "generated_" . time() . ".docx";
 
-        $clientdata = $this->tbs->MergeBlock("client,contract", "array", [
-            "contract" => $contractdata_tmp,
+        $clientdata = $this->tbs->MergeBlock("client", "array", [
             "client" => $clientdata_tmp,
+        ]);
+
+        $clientdata = $this->tbs->MergeBlock("contract", "array", [
+            "contract" => $contractdata_tmp,
         ]);
 
         $outputPath = storage_path(

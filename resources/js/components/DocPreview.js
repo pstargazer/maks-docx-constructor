@@ -16,15 +16,14 @@ export class DocPreview {
         отрендерить компонент
     */
     async render(filename,client_id) {
-        alert()
-        this.setDocUrl(`/${this.subject}/generate?template_id=${filename}&client_id=${client_id}`)
+        // alert(filename)
+        // this.setDocUrl(`/${this.subject}/generate?template_id=${filename}&client_id=${client_id}`)
         if(filename && client_id) {
         // if(true) {
             this.clearDocument();
             let renderedContent = "";
             try {
-                console.log(this.fileUrl);
-                let documentBlob = await this.get(this.fileUrl);
+                let documentBlob = await this.get(`/${this.id_prefix}/generate?template_id=${filename}&client_id=${client_id}`);
                 let result = await mammoth.convertToHtml({
                     arrayBuffer: documentBlob,
                 });
@@ -59,8 +58,8 @@ export class DocPreview {
                     .value,
             },
             body: JSON.stringify({
-                client_id: 1,
-                template_id: 1,
+                client_id: this.client_id,
+                template_id: this.template_id,
             }),
         });
         return response.arrayBuffer();
@@ -70,11 +69,11 @@ export class DocPreview {
         @param name
         присвоить имя файла
     */
-    setDocUrl(name, client_id) {
+    setDocUrl(name) {
         // this.filename = name;
         // this.fileUrl = `/${this.id_prefix}/view=${name}`;
-        this.fileUrl = `/${this.id_prefix}/generate`;
-        // this.fileUrl = name;
+        // this.fileUrl = `/${this.id_prefix}/generate`;
+        this.fileUrl = name;
     }
 
     /*
